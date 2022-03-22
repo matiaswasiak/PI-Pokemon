@@ -45,7 +45,6 @@ const LandingInfo = styled.div`
     width: 200px;
     height: 80px;
     font-size: 50px;
-    font-family: "Lato";
     font-weight: 800;
     line-height: 88px;
     text-transform: uppercase;

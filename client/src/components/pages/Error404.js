@@ -42,7 +42,6 @@ const CardInfo = styled.div`
   justify-content: center;
   text-align: center;
   width: 60%;
-  font-family: "Lato";
   color: #fbffff;
 
   img {
