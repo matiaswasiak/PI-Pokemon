@@ -15,25 +15,25 @@ const SearchBar = styled.form`
 
   input:first-child {
     position: relative;
+    box-sizing: border-box;
     width: 700px;
     height: 100%;
-    border: 2px solid #d5a8f9;
-    box-sizing: border-box;
-    border-radius: 20px;
-    background: #f0edf2;
     padding: 0 20px;
     font-size: 16px;
+    background: #f0edf2;
+    border: 2px solid #d5a8f9;
+    border-radius: 20px;
   }
 
   input:last-child {
     margin-left: -20px;
     width: 120px;
     height: 50px;
+    font-size: 18px;
+    color: #ffffff;
     background: #d5a8f9;
     border: 2px solid #d5a8f9;
     border-radius: 0px 20px 20px 0px;
-    color: #ffffff;
-    font-size: 18px;
   }
 `;
 
