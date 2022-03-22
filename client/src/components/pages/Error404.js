@@ -30,9 +30,9 @@ const Card = styled.div`
   width: 1200px;
   height: 600px;
   margin: auto;
+  background: linear-gradient(#244049, #20353c);
   border-radius: 20px;
   box-shadow: 0px 4px 55px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(#244049, #20353c);
 `;
 
 const CardInfo = styled.div`
@@ -42,17 +42,17 @@ const CardInfo = styled.div`
   justify-content: center;
   text-align: center;
   width: 60%;
-  color: #fbffff;
   font-family: "Lato";
+  color: #fbffff;
 
   img {
     height: 360px;
   }
 
   p {
+    margin: 10px 0 36px 0;
     font-size: 32px;
     line-height: 42px;
-    margin: 10px 0 36px 0;
 
     span {
       color: #ecc92a;
@@ -60,15 +60,15 @@ const CardInfo = styled.div`
   }
 
   button {
-    margin: 0 auto;
     width: 40%;
     height: 75px;
-    background-color: #ffcb04;
-    border-radius: 110px;
-    border: none;
-    text-transform: uppercase;
-    font-weight: 600;
+    margin: 0 auto;
     font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #ffcb04;
+    border: none;
+    border-radius: 110px;
     cursor: pointer;
   }
 `;
