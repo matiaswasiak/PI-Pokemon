@@ -72,21 +72,21 @@ const Container = styled.main`
 `;
 
 const Card = styled.div`
-  box-sizing: border-box;
-  padding: 0 50px;
   display: flex;
   width: 1200px;
   height: 700px;
-  background: linear-gradient(#efdffd, #dbcffa);
   margin: auto;
+  padding: 0 50px;
+  box-sizing: border-box;
+  background: linear-gradient(#efdffd, #dbcffa);
   border-radius: 20px;
 `;
 
 const CardDetail = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: auto;
   width: 100%;
+  margin: auto;
 
   div {
     img {
@@ -100,17 +100,17 @@ const InfoDetail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff50;
   width: 500px;
   height: 500px;
+  background-color: #ffffff50;
   border-radius: 20px;
 
   div {
     h2 {
-      font-weight: 600;
-      font-size: 40px;
-      line-height: 48px;
       text-align: center;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 48px;
       text-transform: uppercase;
     }
   }
@@ -123,13 +123,13 @@ const PrincipalDetail = styled.div`
   justify-content: space-between;
 
   p {
-    font-weight: 600;
     font-size: 20px;
+    font-weight: 600;
     line-height: 24px;
 
     span {
-      font-weight: 400;
       font-size: 18px;
+      font-weight: 400;
       line-height: 22px;
     }
   }
@@ -142,20 +142,16 @@ const SecondaryDetail = styled.div`
       align-items: center;
 
       p:first-child {
-        font-weight: 600;
         font-size: 16px;
+        font-weight: 600;
       }
 
       p:last-child {
-        font-weight: 300;
         font-size: 14px;
+        font-weight: 300;
       }
     }
 
-    /* input {
-      width: 100%;
-      background: #b971f5;
-    } */
     input[type="range"] {
       -webkit-appearance: none;
       width: 100%;
