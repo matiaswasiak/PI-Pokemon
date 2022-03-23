@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-const Card = () => {
+const Card = ({ image, name }) => {
   return (
     <Container>
       <CardImage>
-        <img src="/images/Bulbasaur.png" alt="" />
+        {/* <img src="/images/Bulbasaur.png" alt="" /> */}
+        <img src={image} alt="imagen" />
       </CardImage>
       <CardInfo>
         <CardTitle>
-          <h3>Bulbasaur</h3>
+          <h3>{name}</h3>
         </CardTitle>
         <CardTypes>
           <p>grass</p>

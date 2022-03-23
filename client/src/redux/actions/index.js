@@ -1,26 +1,22 @@
 import axios from "axios";
-
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_TYPES = "GET_TYPES";
 
-export const getPokemons = () => {
+// UNION ENTRE BACK Y FRONT TRAE LOS POKEMONES DE LA API
+export function getPokemons() {
   return async function (dispatch) {
-    try {
-      const pokemons = await axios("http://localhost:3001/pokemons");
-      dispatch({ type: GET_POKEMONS, payload: pokemons.data });
-    } catch (error) {
-      console.error("Error in action getPokemons:", error.message);
-    }
+    const pokemons = await axios.get("http://localhost:3001/pokemons");
+    //TRAE TODOS LOS POKEMONES AL HOME CON SUS TIPOS E IMAGENES
+    return dispatch({
+      type: "GET_POKEMONS",
+      payload: pokemons.data,
+    });
   };
-};
-
-export const getTypes = () => {
+}
+//TRAE TODOS LOS TIPOS DE POKEMONES
+export function getTypes() {
   return async function (dispatch) {
-    try {
-      const pokemonsTypes = await axios("http://localhost:3001/types");
-      dispatch({ type: GET_TYPES, payload: pokemonsTypes.data });
-    } catch (error) {
-      console.error("Error in action getTypes:", error.message);
-    }
+    const info = await axios.get("http://localhost:3001/types");
+    return dispatch({ type: "GET_TYPES", payload: info.data });
   };
-};
+}

@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getPokemons } from "../../redux/actions";
 import Filter from "../filters/Filter";
 import Card from "../organisms/Card";
 import Pagination from "../organisms/Pagination";
@@ -6,6 +9,14 @@ import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 
 const Home = () => {
+  let pokemons = useSelector((state) => state.pokemons);
+
+  let dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPokemons());
+  }, []);
+  console.log(pokemons);
   return (
     <div>
       <Header />
@@ -13,18 +24,9 @@ const Home = () => {
         <HomeContent>
           <HomeGallery>
             <Gallery>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {pokemons.map((pokemon) => {
+                return <Card name={pokemon.name} image={pokemon.sprite} />;
+              })}
             </Gallery>
             <Pagination />
           </HomeGallery>
