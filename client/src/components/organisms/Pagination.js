@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 const Pagination = () => {
-  return <Container>Pagination</Container>;
+  return <Container>Acá va la paginación :)</Container>;
 };
 
 const Container = styled.div`
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 1210px;
   height: 60px;
   background-color: #b6a1ea;
