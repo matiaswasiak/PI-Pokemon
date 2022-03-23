@@ -31,7 +31,7 @@ const objPokemonsApi = (p) => {
     speed: p.stats[5].base_stat,
     height: p.height,
     weight: p.weight,
-    sprite: p.sprites.other.dream_world.front_default,
+    sprite: p.sprites.other["official-artwork"].front_default,
     types:
       p.types.length < 2
         ? [p.types[0].type.name]

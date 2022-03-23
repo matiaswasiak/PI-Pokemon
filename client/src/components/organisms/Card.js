@@ -31,7 +31,8 @@ const Container = styled.div`
 `;
 const CardImage = styled.div`
   img {
-    width: 100%;
+    width: 206px;
+    height: 206px;
   }
 `;
 const CardInfo = styled.div`
