@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getPokemons } from "../../redux/actions";
-import Filter from "../filters/Filter";
 import Card from "../organisms/Card";
+import CardDetail from "../organisms/CardDetail";
 import Pagination from "../organisms/Pagination";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
@@ -15,53 +15,53 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPokemons());
-  }, []);
-  console.log(pokemons);
+  }, [dispatch]);
+
   return (
     <div>
       <Header />
       <Container>
-        <HomeContent>
-          <HomeGallery>
-            <Gallery>
-              {pokemons.map((pokemon) => {
-                return <Card name={pokemon.name} image={pokemon.sprite} />;
-              })}
-            </Gallery>
-            <Pagination />
-          </HomeGallery>
-          <HomeDetail>
-            <PokeDetail>
-              <img src="/images/Bulbasaur.png" alt="" />
-              <h2>Bulbasaur</h2>
-              <PokeStats>
-                <div>
-                  <p>
-                    <img src="/images/Health.svg" alt="" />
-                    50%
-                  </p>
-                  <p>
-                    <img src="/images/Defense.svg" alt="" />
-                    50%
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <img src="/images/Attack.svg" alt="" />
-                    50%
-                  </p>
-                  <p>
-                    <img src="/images/Speed.svg" alt="" />
-                    50%
-                  </p>
-                </div>
-              </PokeStats>
-            </PokeDetail>
-            <PokeTypes>
-              <Filter />
-            </PokeTypes>
-          </HomeDetail>
-        </HomeContent>
+        {pokemons.length === 0 && (
+          <Gif>
+            <iframe
+              src="https://giphy.com/embed/vsyKKf1t22nmw"
+              width="480"
+              height="480"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </Gif>
+        )}
+        {pokemons.length > 0 && (
+          <HomeContent>
+            <HomeGallery>
+              <Gallery>
+                {pokemons.map((pokemon) => {
+                  return (
+                    <Card
+                      key={pokemon.id}
+                      name={pokemon.name}
+                      image={pokemon.sprite}
+                      types={pokemon.types}
+                    />
+                  );
+                })}
+              </Gallery>
+              <Pagination />
+            </HomeGallery>
+            {pokemons.length > 0 && (
+              <CardDetail
+                image={pokemons[5].sprite}
+                name={pokemons[5].name}
+                health={pokemons[5].health}
+                attack={pokemons[5].attack}
+                defense={pokemons[5].defense}
+                speed={pokemons[5].speed}
+              />
+            )}
+          </HomeContent>
+        )}
       </Container>
       <Footer />
     </div>
@@ -124,68 +124,10 @@ const Gallery = styled.div`
   }
 `;
 
-const HomeDetail = styled.div`
-  width: 540px;
-  height: 100%;
-  background: linear-gradient(#efdefc, #dbcffa);
-  border-radius: 20px;
-`;
-
-const PokeDetail = styled.div`
-  box-sizing: border-box;
+const Gif = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: calc(100% - 150px);
-
-  img {
-    width: 300px;
-  }
-
-  h2 {
-    margin: auto;
-    font-size: 45px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
 `;
-const PokeStats = styled.div`
-  div {
-    display: flex;
-    background-color: #ffffff80;
-    border-top: 2px solid #d7b1f680;
-    border-left: 2px solid #d7b1f680;
-    border-right: 2px solid #d7b1f680;
-    border-radius: 20px 20px 0 0;
-
-    p {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 200px;
-      height: 50px;
-      margin: 0;
-      font-size: 20px;
-      font-weight: 400;
-      text-transform: uppercase;
-
-      img {
-        width: 30px;
-        margin-right: 10px;
-      }
-    }
-
-    p:last-child {
-      border-left: 2px solid #d7b1f680;
-    }
-  }
-
-  div:last-child {
-    margin-bottom: 35px;
-    border-bottom: 2px solid #d7b1f680;
-    border-radius: 0 0 20px 20px;
-  }
-`;
-const PokeTypes = styled.div``;
 
 export default Home;

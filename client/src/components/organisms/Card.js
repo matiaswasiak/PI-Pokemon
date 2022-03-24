@@ -1,10 +1,37 @@
+// import { useState } from "react";
 import styled from "styled-components";
 
-const Card = ({ image, name }) => {
+const Card = ({ image, name, types }) => {
+  const colours = {
+    normal: "#A8A77Aaa",
+    fire: "#EE8130aa",
+    water: "#6390F0aa",
+    electric: "#F7D02Caa",
+    grass: "#7AC74Caa",
+    ice: "#96D9D6aa",
+    fighting: "#C22E28aa",
+    poison: "#A33EA1aa",
+    ground: "#E2BF65aa",
+    flying: "#A98FF3aa",
+    psychic: "#F95587aa",
+    bug: "#A6B91Aaa",
+    rock: "#B6A136aa",
+    ghost: "#735797aa",
+    dragon: "#6F35FCaa",
+    dark: "#705746aa",
+    steel: "#B7B7CEaa",
+    fairy: "#D685ADaa",
+  };
+
+  // const [isShown, setIsShown] = useState(false);
+  // console.log(isShown);
+
   return (
-    <Container>
+    <Container
+    // onMouseEnter={() => setIsShown(true)}
+    // onMouseLeave={() => setIsShown(false)}
+    >
       <CardImage>
-        {/* <img src="/images/Bulbasaur.png" alt="" /> */}
         <img src={image} alt="imagen" />
       </CardImage>
       <CardInfo>
@@ -12,8 +39,17 @@ const Card = ({ image, name }) => {
           <h3>{name}</h3>
         </CardTitle>
         <CardTypes>
-          <p>grass</p>
-          <p>poison</p>
+          {types.length ? (
+            types.map((t, index) => {
+              return (
+                <p key={index} style={{ backgroundColor: `${colours[t]}` }}>
+                  {t}
+                </p>
+              );
+            })
+          ) : (
+            <p>unknown</p>
+          )}
         </CardTypes>
       </CardInfo>
     </Container>
@@ -31,8 +67,7 @@ const Container = styled.div`
 `;
 const CardImage = styled.div`
   img {
-    width: 206px;
-    height: 206px;
+    width: 100%;
   }
 `;
 const CardInfo = styled.div`
@@ -68,6 +103,10 @@ const CardTypes = styled.div`
   p:first-child {
     background-color: #a6da88;
     border-radius: 20px 0px 0px 20px;
+  }
+
+  p:only-child {
+    border-radius: 20px;
   }
 `;
 
