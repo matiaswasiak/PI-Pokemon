@@ -6,7 +6,7 @@ const LandingPage = () => {
     <Container>
       <LandingImage>
         <LandingInfo>
-          <img src="/images/Pokemon.png" alt="Pokemon text" />
+          <img src="/images/Pokemon.png" alt="Pokemon Title" />
           <Link to="/home">Home</Link>
         </LandingInfo>
       </LandingImage>
@@ -19,14 +19,23 @@ const Container = styled.main`
   width: 100vw;
   height: 100vh;
   background: url("images/LandingPage.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 const LandingImage = styled.div`
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 600px;
   margin: auto;
   background: url("/images/Circle.png");
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
+
+  @media (max-width: 620px) {
+    width: 90%;
+  }
 `;
 const LandingInfo = styled.div`
   display: flex;
@@ -37,22 +46,37 @@ const LandingInfo = styled.div`
 
   img {
     width: 130%;
+
+    @media (max-width: 900px) {
+      width: 100%;
+    }
   }
 
   a {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     width: 200px;
     height: 80px;
-    font-size: 50px;
+    font-size: 3rem;
     font-weight: 800;
-    line-height: 88px;
     text-transform: uppercase;
     text-decoration: none;
     color: #01a297;
     background-color: #fefffc;
     border-radius: 20px;
+
+    @media (max-width: 900px) {
+      width: 160px;
+      height: 70px;
+      font-size: 2.5rem;
+    }
+
+    @media (max-width: 400px) {
+      width: 120px;
+      height: 50px;
+      font-size: 1.9rem;
+    }
   }
 `;
 
