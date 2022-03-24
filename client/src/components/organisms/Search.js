@@ -1,10 +1,32 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { getNamePokemons } from "../../redux/actions";
 
 const Search = () => {
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+
+  function handleInputChange(e) {
+    e.preventDefault();
+    setName(e.target.value);
+
+    console.log(name);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(getNamePokemons(name));
+  }
+
   return (
     <SearchBar>
-      <input type="text" placeholder="Search for pokemons..." />
-      <input type="submit" />
+      <input
+        type="text"
+        placeholder="Search for pokemons..."
+        onChange={(e) => handleInputChange(e)}
+      />
+      <input type="submit" onClick={(e) => handleSubmit(e)} />
     </SearchBar>
   );
 };

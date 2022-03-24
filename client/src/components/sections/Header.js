@@ -11,7 +11,7 @@ const Header = () => {
         </Link>
         <Search />
         <Link to="/create">
-          <a href="/create">Create Pokemon</a>
+          <p>Create Pokemon</p>{" "}
         </Link>
       </Navbar>
     </Container>
@@ -39,7 +39,7 @@ const Navbar = styled.div`
       text-transform: uppercase;
     }
 
-    a {
+    p {
       display: flex;
       justify-content: center;
       align-items: center;

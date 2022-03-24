@@ -21,6 +21,12 @@ function rootReducer(state = initialState, action) {
         types: action.payload,
       };
 
+    case "GET_NAME_POKEMONS":
+      return {
+        ...state,
+        pokemons: action.payload,
+      };
+
     default:
       return state;
   }
