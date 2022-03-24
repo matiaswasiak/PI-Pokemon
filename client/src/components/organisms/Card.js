@@ -1,7 +1,16 @@
-// import { useState } from "react";
 import styled from "styled-components";
 
-const Card = ({ image, name, types }) => {
+const Card = ({
+  key,
+  name,
+  image,
+  types,
+  health,
+  attack,
+  defense,
+  speed,
+  setDetail,
+}) => {
   const colours = {
     normal: "#A8A77Aaa",
     fire: "#EE8130aa",
@@ -23,13 +32,11 @@ const Card = ({ image, name, types }) => {
     fairy: "#D685ADaa",
   };
 
-  // const [isShown, setIsShown] = useState(false);
-  // console.log(isShown);
-
   return (
     <Container
-    // onMouseEnter={() => setIsShown(true)}
-    // onMouseLeave={() => setIsShown(false)}
+      onMouseEnter={() =>
+        setDetail({ key, name, image, types, health, attack, defense, speed })
+      }
     >
       <CardImage>
         <img src={image} alt="imagen" />

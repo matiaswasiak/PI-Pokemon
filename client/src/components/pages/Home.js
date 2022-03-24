@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getPokemons } from "../../redux/actions";
@@ -16,6 +16,30 @@ const Home = () => {
   useEffect(() => {
     dispatch(getPokemons());
   }, [dispatch]);
+
+  const [detail, setDetail] = useState({
+    key: "",
+    name: "",
+    image: "",
+    types: [],
+    health: "",
+    attack: "",
+    defense: "",
+    speed: "",
+  });
+
+  useEffect(() => {
+    setDetail({
+      key: pokemons[0]?.id,
+      name: pokemons[0]?.name,
+      image: pokemons[0]?.sprite,
+      types: pokemons[0]?.types,
+      health: pokemons[0]?.health,
+      attack: pokemons[0]?.attack,
+      defense: pokemons[0]?.defense,
+      speed: pokemons[0]?.speed,
+    });
+  }, [pokemons]);
 
   return (
     <div>
@@ -37,29 +61,32 @@ const Home = () => {
           <HomeContent>
             <HomeGallery>
               <Gallery>
-                {pokemons.map((pokemon) => {
-                  return (
-                    <Card
-                      key={pokemon.id}
-                      name={pokemon.name}
-                      image={pokemon.sprite}
-                      types={pokemon.types}
-                    />
-                  );
-                })}
+                {pokemons.map((pokemon) => (
+                  <Card
+                    key={pokemon.id}
+                    name={pokemon.name}
+                    image={pokemon.sprite}
+                    types={pokemon.types}
+                    health={pokemon.health}
+                    attack={pokemon.attack}
+                    defense={pokemon.defense}
+                    speed={pokemon.speed}
+                    setDetail={setDetail}
+                  />
+                ))}
               </Gallery>
               <Pagination />
             </HomeGallery>
-            {pokemons.length > 0 && (
-              <CardDetail
-                image={pokemons[5].sprite}
-                name={pokemons[5].name}
-                health={pokemons[5].health}
-                attack={pokemons[5].attack}
-                defense={pokemons[5].defense}
-                speed={pokemons[5].speed}
-              />
-            )}
+
+            <CardDetail
+              key={detail.key}
+              image={detail.image}
+              name={detail.name}
+              health={detail.health}
+              attack={detail.attack}
+              defense={detail.defense}
+              speed={detail.speed}
+            />
           </HomeContent>
         )}
       </Container>

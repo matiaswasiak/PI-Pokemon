@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const LandingPage = () => {
@@ -6,7 +7,7 @@ const LandingPage = () => {
       <LandingImage>
         <LandingInfo>
           <img src="/images/Pokemon.png" alt="Pokemon text" />
-          <a href="/">Home</a>
+          <Link to="/home">Home</Link>
         </LandingInfo>
       </LandingImage>
     </Container>

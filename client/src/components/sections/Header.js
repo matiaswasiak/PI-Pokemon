@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Search from "../organisms/Search";
 
@@ -5,9 +6,13 @@ const Header = () => {
   return (
     <Container>
       <Navbar>
-        <h1>Pokemon Wiki</h1>
+        <Link to="/home">
+          <h1>Pokemon Wiki</h1>
+        </Link>
         <Search />
-        <a href="/">Create Pokemon</a>
+        <Link to="/create">
+          <a href="/create">Create Pokemon</a>
+        </Link>
       </Navbar>
     </Container>
   );
@@ -26,26 +31,28 @@ const Navbar = styled.div`
   width: 100%;
   margin: 0 60px;
 
-  h1 {
-    font-size: 45px;
-    font-weight: 600;
-    line-height: 54px;
-    text-transform: uppercase;
-  }
+  Link {
+    h1 {
+      font-size: 45px;
+      font-weight: 600;
+      line-height: 54px;
+      text-transform: uppercase;
+    }
 
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 25px;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #d5a8f9;
-    border-radius: 20px;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 50px;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 25px;
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #d5a8f9;
+      border-radius: 20px;
+    }
   }
 `;
 
