@@ -47,14 +47,7 @@ const Home = () => {
       <Container>
         {pokemons.length === 0 && (
           <Gif>
-            <iframe
-              src="https://giphy.com/embed/vsyKKf1t22nmw"
-              width="480"
-              height="480"
-              frameBorder="0"
-              className="giphy-embed"
-              allowFullScreen
-            ></iframe>
+            <img src="/images/Pikachu.gif" alt="pikachu gif" />
           </Gif>
         )}
         {pokemons.length > 0 && (
@@ -96,6 +89,7 @@ const Home = () => {
 };
 
 const Container = styled.main`
+  display: flex;
   box-sizing: border-box;
   height: calc(100vh - 160px);
   padding: 60px;
@@ -155,6 +149,29 @@ const Gif = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 450px;
+  width: 550px;
+  margin: auto;
+  border-radius: 20px;
+  animation: bgcolor 3s ease-in-out infinite;
+
+  @keyframes bgcolor {
+    0% {
+      background-color: #9816ff80;
+    }
+    50% {
+      background-color: #353ab080;
+    }
+
+    100% {
+      background-color: #9816ff80;
+    }
+  }
+
+  img {
+    width: 350px;
+    border-radius: 20px;
+  }
 `;
 
 export default Home;

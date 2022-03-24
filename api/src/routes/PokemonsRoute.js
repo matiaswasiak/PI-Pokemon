@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const {
   getAllPokemons,
+  getPokemonByName,
   deletePokemon,
 } = require("../controllers/PokemonController");
 const { Pokemon, Type } = require("../db");
@@ -12,19 +13,22 @@ router.get("/", async (req, res) => {
   const name = req.query.name;
 
   if (name) {
-    // Get PokemonsByName
-    const allPokemons = await getAllPokemons();
-    try {
-      if (name) {
-        const pokemonName = await allPokemons.filter((e) => e.name == name);
-        pokemonName.length
-          ? res.status(200).json(pokemonName)
-          : res
-              .status(404)
-              .send(`Pokemon with the name ${name} was not found :/`);
-      }
-    } catch (error) {
-      console.error(error);
+    const pokemonByName = await getPokemonByName(name);
+
+    if (pokemonByName) return res.status(200).send(pokemonByName);
+    else {
+      const pokemonFromDbByName = await getPokemonsDb().then((res) =>
+        res.filter(
+          (p) => p.name.toLowerCase().trim() === name.toLowerCase().trim()
+        )
+      );
+
+      if (pokemonFromDbByName.length > 0)
+        return res.status(200).send(pokemonFromDbByName);
+      else
+        return res
+          .status(404)
+          .send(`Pokemon with the name ${name} was not found :/`);
     }
   } else {
     // Get Pokemons

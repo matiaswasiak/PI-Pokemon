@@ -81,6 +81,45 @@ const getAllPokemons = async () => {
   }
 };
 
+// Get PokemonByName
+const getPokemonByName = async (name) => {
+  try {
+    let data = [];
+    let dataSpecies = [];
+    name = name.toLowerCase().trim();
+
+    let request = await axios(`https://pokeapi.co/api/v2/pokemon/${name}`).then(
+      (res) => res.data
+    );
+    data.push(request);
+
+    let requestSpecie = await axios(data[0].species.url).then(
+      (res) => res.data
+    );
+    dataSpecies.push(requestSpecie);
+
+    return data.map((p, index) => {
+      return {
+        id: p.id,
+        name: p.name,
+        health: p.stats[0].base_stat,
+        attack: p.stats[1].base_stat,
+        defense: p.stats[2].base_stat,
+        speed: p.stats[5].base_stat,
+        height: p.height,
+        weight: p.weight,
+        sprite: p.sprites.other["official-artwork"].front_default,
+        types:
+          p.types.length < 2
+            ? [p.types[0].type.name]
+            : [p.types[0].type.name, p.types[1].type.name],
+      };
+    });
+  } catch (error) {
+    console.error("Error in getPokemonByName:", error.message);
+  }
+};
+
 // 4. - Delete a pokemon from Db
 const deletePokemon = async (id) => {
   try {
@@ -99,4 +138,5 @@ const deletePokemon = async (id) => {
 module.exports = {
   getAllPokemons,
   deletePokemon,
+  getPokemonByName,
 };
