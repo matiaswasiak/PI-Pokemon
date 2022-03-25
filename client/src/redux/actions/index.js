@@ -110,7 +110,7 @@ export function orderByAttack(payload) {
 
 // Get details
 export function getDetails(id) {
-  // CON PROMISES
+  // With Promises
   // return function (dispatch) {
   //   axios.get("http://localhost:3001/pokemons/" + id).then((res) => {
   //     dispatch({
@@ -120,7 +120,7 @@ export function getDetails(id) {
   //   });
   // };
 
-  // CON ASYNC / AWAIT
+  // With Async/Await
   return async function (dispatch) {
     try {
       let json = await axios.get("http://localhost:3001/pokemons/" + id);
