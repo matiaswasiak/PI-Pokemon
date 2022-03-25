@@ -137,6 +137,8 @@ const deletePokemon = async (id) => {
 
 module.exports = {
   getAllPokemons,
+  getPokemonsApi,
+  getPokemonsDb,
   deletePokemon,
   getPokemonByName,
 };
