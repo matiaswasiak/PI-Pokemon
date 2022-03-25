@@ -45,6 +45,12 @@ const SearchBar = styled.form`
     background: #f0edf2;
     border: 2px solid #d5a8f9;
     border-radius: 20px;
+
+    &:focus {
+      outline: 0 solid #d5a8f9;
+      background-color: #fbf7fc;
+      font-size: 18px;
+    }
   }
 
   input:last-child {
@@ -56,6 +62,11 @@ const SearchBar = styled.form`
     background: #d5a8f9;
     border: 2px solid #d5a8f9;
     border-radius: 0px 20px 20px 0px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #9816ff80;
+    }
   }
 `;
 

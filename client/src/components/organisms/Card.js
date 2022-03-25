@@ -71,6 +71,7 @@ const Container = styled.div`
   background-color: #fffffc90;
   border: 2px #c27ec0 solid;
   border-radius: 20px;
+  cursor: pointer;
 `;
 const CardImage = styled.div`
   img {

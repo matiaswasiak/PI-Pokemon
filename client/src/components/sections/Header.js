@@ -59,6 +59,10 @@ const StyledLink = styled(Link)`
     color: #ffffff;
     background-color: #d5a8f9;
     border-radius: 20px;
+
+    &:hover {
+      background-color: #9816ff80;
+    }
   }
 `;
 

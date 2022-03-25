@@ -66,6 +66,10 @@ const LandingInfo = styled.div`
     background-color: #fefffc;
     border-radius: 20px;
 
+    &:hover {
+      color: #009a4c;
+    }
+
     @media (max-width: 900px) {
       width: 160px;
       height: 70px;
