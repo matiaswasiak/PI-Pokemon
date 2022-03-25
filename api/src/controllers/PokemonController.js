@@ -98,7 +98,7 @@ const getPokemonByName = async (name) => {
     );
     dataSpecies.push(requestSpecie);
 
-    return data.map((p, index) => {
+    return data.map((p) => {
       return {
         id: p.id,
         name: p.name,

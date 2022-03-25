@@ -6,13 +6,13 @@ const Header = () => {
   return (
     <Container>
       <Navbar>
-        <Link to="/home">
-          <h1>Pokemon Wiki</h1>
-        </Link>
+        <StyledLink to="/home">
+          <h1 className="header__title">Pokemon Wiki</h1>
+        </StyledLink>
         <Search />
-        <Link to="/create">
-          <p>Create Pokemon</p>{" "}
-        </Link>
+        <StyledLink to="/create">
+          <p className="header__button">Create Pokemon</p>
+        </StyledLink>
       </Navbar>
     </Container>
   );
@@ -30,29 +30,35 @@ const Navbar = styled.div`
   align-items: center;
   width: 100%;
   margin: 0 60px;
+`;
 
-  Link {
-    h1 {
-      font-size: 45px;
-      font-weight: 600;
-      line-height: 54px;
-      text-transform: uppercase;
-    }
+const StyledLink = styled(Link)`
+  text-decoration: none;
 
-    p {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 200px;
-      height: 50px;
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 25px;
-      text-decoration: none;
-      color: #ffffff;
-      background-color: #d5a8f9;
-      border-radius: 20px;
-    }
+  &:active {
+    color: #9816ff80;
+  }
+
+  h1 {
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 54px;
+    text-transform: uppercase;
+  }
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #d5a8f9;
+    border-radius: 20px;
   }
 `;
 
