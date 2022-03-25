@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/detail" element={<DetailPokemon />} />
+          <Route path="/detail/:id" element={<DetailPokemon />} />
           <Route path="/create" element={<CreatePokemon />} />
           <Route path="*" element={<Error404 />} />
         </Routes>

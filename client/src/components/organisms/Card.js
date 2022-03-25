@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Card = ({
@@ -38,7 +39,7 @@ const Card = ({
         setDetail({ key, name, image, types, health, attack, defense, speed })
       }
     >
-      <CardImage>
+      <CardImage to="/detail/1">
         <img src={image} alt="imagen" />
       </CardImage>
       <CardInfo>
@@ -73,7 +74,7 @@ const Container = styled.div`
   border-radius: 20px;
   cursor: pointer;
 `;
-const CardImage = styled.div`
+const CardImage = styled(Link)`
   img {
     width: 100%;
   }
