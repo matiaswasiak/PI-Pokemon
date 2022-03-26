@@ -30,70 +30,70 @@ const DetailPokemon = () => {
         <Card>
           <CardDetail>
             <div>
-              <img src={pokemonById.sprite} alt={pokemonById.name} />
+              <img src={pokemonById?.sprite} alt={pokemonById?.name} />
             </div>
             <InfoDetail>
               <div>
                 <h2>
-                  {pokemonById.name} N.°{numberId}
+                  {pokemonById?.name} N.°{numberId}
                 </h2>
               </div>
               <StatsDetail>
                 <PrincipalDetail>
                   <p>
-                    Height: <span>{pokemonById.height / 10} m</span>
+                    Height: <span>{pokemonById?.height / 10} m</span>
                   </p>
                   <p>
-                    Weight: <span>{pokemonById.weight / 10} kg</span>
+                    Weight: <span>{pokemonById?.weight / 10} kg</span>
                   </p>
                 </PrincipalDetail>
                 <SecondaryDetail>
                   <label>
                     <div>
                       <p>Health:</p>
-                      <p>{pokemonById.health}%</p>
+                      <p>{pokemonById?.health}%</p>
                     </div>
                     <input
                       type="range"
                       min="0"
                       max="100"
-                      value={pokemonById.health}
+                      value={pokemonById?.health}
                     />
                   </label>
                   <label>
                     <div>
                       <p>Attack:</p>
-                      <p>{pokemonById.attack}%</p>
+                      <p>{pokemonById?.attack}%</p>
                     </div>
                     <input
                       type="range"
                       min="0"
                       max="100"
-                      value={pokemonById.attack}
+                      value={pokemonById?.attack}
                     />
                   </label>
                   <label>
                     <div>
                       <p>Defense:</p>
-                      <p>{pokemonById.defense}%</p>
+                      <p>{pokemonById?.defense}%</p>
                     </div>
                     <input
                       type="range"
                       min="0"
                       max="100"
-                      value={pokemonById.defense}
+                      value={pokemonById?.defense}
                     />
                   </label>
                   <label>
                     <div>
                       <p>Speed:</p>
-                      <p>{pokemonById.speed}%</p>
+                      <p>{pokemonById?.speed}%</p>
                     </div>
                     <input
                       type="range"
                       min="0"
                       max="100"
-                      value={pokemonById.speed}
+                      value={pokemonById?.speed}
                     />
                   </label>
                 </SecondaryDetail>
