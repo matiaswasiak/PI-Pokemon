@@ -4,11 +4,41 @@ import styled from "styled-components";
 import { getTypes } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
+import limitCheckBox from "../utils/LimitCheck";
+
+let formInputs = {
+  name: "",
+  height: 50,
+  weight: 50,
+  health: 50,
+  attack: 50,
+  defense: 50,
+  speed: 50,
+  types: [],
+};
 
 const CreatePokemon = () => {
   const dispatch = useDispatch();
-
   const types = useSelector((state) => state.types);
+
+  const handleChange = (e) => {
+    limitCheckBox();
+
+    e.target.name === "types"
+      ? formInputs["types"].indexOf(e.target.value) !== -1
+        ? (formInputs = {
+            ...formInputs,
+            types: formInputs["types"].filter((f) => f !== e.target.value),
+          })
+        : (formInputs = {
+            ...formInputs,
+            types: [...formInputs.types, e.target.value],
+          })
+      : (formInputs = {
+          ...formInputs,
+          [e.target.name]: e.target.value,
+        });
+  };
 
   useEffect(() => {
     dispatch(getTypes());

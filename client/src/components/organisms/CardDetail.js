@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Filter from "../filters/Filter";
+import Filter from "./Filter";
 
 const CardDetail = ({ image, name, health, attack, defense, speed }) => {
   return (
