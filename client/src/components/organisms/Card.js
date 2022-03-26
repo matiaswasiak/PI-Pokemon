@@ -47,8 +47,9 @@ const Card = ({
         <CardTitle>
           <h3>{name}</h3>
         </CardTitle>
+
         <CardTypes>
-          {types.length ? (
+          {types?.length ? (
             types.map((t, index) => {
               return (
                 <p key={index} style={{ backgroundColor: `${colours[t]}` }}>

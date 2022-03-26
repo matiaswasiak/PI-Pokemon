@@ -65,20 +65,35 @@ const Home = () => {
           <HomeContent>
             <HomeGallery>
               <Gallery>
-                {currentPosts.map((pokemon) => (
-                  <Card
-                    id={pokemon.id}
-                    key={pokemon.id}
-                    name={pokemon.name}
-                    image={pokemon.sprite}
-                    types={pokemon.types}
-                    health={pokemon.health}
-                    attack={pokemon.attack}
-                    defense={pokemon.defense}
-                    speed={pokemon.speed}
-                    setDetail={setDetail}
-                  />
-                ))}
+                {currentPosts.length > 0 ? (
+                  currentPosts.map((pokemon, index) => {
+                    return pokemon === "noData" ? (
+                      <h2 key={index} style={{ gridColumn: "none" }}>
+                        We didn't find any Pokémon created by you, click Create
+                        Pokémon :{")"}
+                      </h2>
+                    ) : typeof pokemon === "string" ? (
+                      <h2 key={index} style={{ gridColumn: "none" }}>
+                        Pokemon with the name {pokemon} was not found :/
+                      </h2>
+                    ) : (
+                      <Card
+                        id={pokemon.id}
+                        key={pokemon.id}
+                        name={pokemon.name}
+                        image={pokemon.sprite}
+                        types={pokemon.types}
+                        health={pokemon.health}
+                        attack={pokemon.attack}
+                        defense={pokemon.defense}
+                        speed={pokemon.speed}
+                        setDetail={setDetail}
+                      />
+                    );
+                  })
+                ) : (
+                  <p>cargando</p>
+                )}
               </Gallery>
               <Pagination
                 postsPerPage={postsPerPage}

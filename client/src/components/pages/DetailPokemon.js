@@ -227,33 +227,4 @@ const SecondaryDetail = styled.div`
   }
 `;
 
-const Gif = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 450px;
-  width: 550px;
-  margin: auto;
-  border-radius: 20px;
-  animation: bgcolor 3s ease-in-out infinite;
-
-  @keyframes bgcolor {
-    0% {
-      background-color: #9816ff80;
-    }
-    50% {
-      background-color: #353ab080;
-    }
-
-    100% {
-      background-color: #9816ff80;
-    }
-  }
-
-  img {
-    width: 350px;
-    border-radius: 20px;
-  }
-`;
-
 export default DetailPokemon;

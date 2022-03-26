@@ -7,8 +7,6 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers);
-
   return (
     <Container>
       <ul>
