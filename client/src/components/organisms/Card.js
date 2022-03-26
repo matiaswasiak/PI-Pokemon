@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Card = ({
+  id,
   key,
   name,
   image,
@@ -39,7 +40,7 @@ const Card = ({
         setDetail({ key, name, image, types, health, attack, defense, speed })
       }
     >
-      <CardImage to="/detail/1">
+      <CardImage to={`/detail/${id}`}>
         <img src={image} alt="imagen" />
       </CardImage>
       <CardInfo>

@@ -141,7 +141,7 @@ function rootReducer(state = initialState, action) {
     case GET_DETAILS:
       return {
         ...state,
-        details: action.paylaod,
+        details: action.payload,
       };
 
     default:

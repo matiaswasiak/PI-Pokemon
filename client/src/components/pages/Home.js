@@ -56,6 +56,7 @@ const Home = () => {
               <Gallery>
                 {pokemons.map((pokemon) => (
                   <Card
+                    id={pokemon.id}
                     key={pokemon.id}
                     name={pokemon.name}
                     image={pokemon.sprite}

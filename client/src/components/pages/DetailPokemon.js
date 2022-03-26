@@ -1,8 +1,28 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getDetails, getPokemons } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 
 const DetailPokemon = () => {
+  const dispatch = useDispatch();
+  const allPokemons = useSelector((state) => state.allPokemons);
+  const details = useSelector((state) => state.details);
+  const { id } = useParams();
+
+  const pokemonById =
+    allPokemons.filter(
+      (p) => p.id === (id.length > 10 ? id : parseInt(id))
+    )[0] || details[0];
+
+  useEffect(() => {
+    dispatch(getDetails(id));
+  }, [dispatch, id]);
+
+  const numberId = id.padStart(3, "0");
+
   return (
     <div>
       <Header />
@@ -10,49 +30,71 @@ const DetailPokemon = () => {
         <Card>
           <CardDetail>
             <div>
-              <img src="/images/Bulbasaur.png" alt="" />
+              <img src={pokemonById.sprite} alt={pokemonById.name} />
             </div>
             <InfoDetail>
               <div>
-                <h2>Bulbasaur N.°001</h2>
+                <h2>
+                  {pokemonById.name} N.°{numberId}
+                </h2>
               </div>
               <StatsDetail>
                 <PrincipalDetail>
                   <p>
-                    Height: <span>0.7m</span>
+                    Height: <span>{pokemonById.height / 10} m</span>
                   </p>
                   <p>
-                    Weight: <span>6.9kg</span>
+                    Weight: <span>{pokemonById.weight / 10} kg</span>
                   </p>
                 </PrincipalDetail>
                 <SecondaryDetail>
                   <label>
                     <div>
                       <p>Health:</p>
-                      <p>50%</p>
+                      <p>{pokemonById.health}%</p>
                     </div>
-                    <input type="range" min="0" max="100" value="50" />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={pokemonById.health}
+                    />
                   </label>
                   <label>
                     <div>
                       <p>Attack:</p>
-                      <p>50%</p>
+                      <p>{pokemonById.attack}%</p>
                     </div>
-                    <input type="range" min="0" max="100" value="50" />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={pokemonById.attack}
+                    />
                   </label>
                   <label>
                     <div>
                       <p>Defense:</p>
-                      <p>50%</p>
+                      <p>{pokemonById.defense}%</p>
                     </div>
-                    <input type="range" min="0" max="100" value="50" />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={pokemonById.defense}
+                    />
                   </label>
                   <label>
                     <div>
                       <p>Speed:</p>
-                      <p>50%</p>
+                      <p>{pokemonById.speed}%</p>
                     </div>
-                    <input type="range" min="0" max="100" value="50" />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={pokemonById.speed}
+                    />
                   </label>
                 </SecondaryDetail>
               </StatsDetail>
