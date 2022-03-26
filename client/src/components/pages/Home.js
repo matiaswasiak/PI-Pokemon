@@ -9,14 +9,25 @@ import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 
 const Home = () => {
-  let pokemons = useSelector((state) => state.pokemons);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(12);
 
+  let pokemons = useSelector((state) => state.pokemons);
   let dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPokemons());
   }, [dispatch]);
 
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = pokemons.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Hover section
   const [detail, setDetail] = useState({
     key: "",
     name: "",
@@ -54,7 +65,7 @@ const Home = () => {
           <HomeContent>
             <HomeGallery>
               <Gallery>
-                {pokemons.map((pokemon) => (
+                {currentPosts.map((pokemon) => (
                   <Card
                     id={pokemon.id}
                     key={pokemon.id}
@@ -69,7 +80,11 @@ const Home = () => {
                   />
                 ))}
               </Gallery>
-              <Pagination />
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={pokemons.length}
+                paginate={paginate}
+              />
             </HomeGallery>
 
             <CardDetail

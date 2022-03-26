@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Error404 = () => {
@@ -9,7 +10,7 @@ const Error404 = () => {
           <p>
             <span>Oops!</span> A wild Snorlax has blocked your path!
           </p>
-          <button>Go Back</button>
+          <StyledLink to="/home">Go Back</StyledLink>
         </CardInfo>
       </Card>
     </Container>
@@ -57,19 +58,24 @@ const CardInfo = styled.div`
       color: #ecc92a;
     }
   }
+`;
 
-  button {
-    width: 40%;
-    height: 75px;
-    margin: 0 auto;
-    font-size: 30px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: #ffcb04;
-    border: none;
-    border-radius: 110px;
-    cursor: pointer;
-  }
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 40%;
+  height: 75px;
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #ffcb04;
+  color: #000;
+  border: none;
+  border-radius: 110px;
+  cursor: pointer;
 `;
 
 export default Error404;
