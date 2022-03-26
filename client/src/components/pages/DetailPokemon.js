@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getDetails, getPokemons } from "../../redux/actions";
+import { getDetails } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 
