@@ -1,7 +1,8 @@
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getTypes } from "../../redux/actions";
+import { getPokemons, getTypes, postPokemon } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 import limitCheckBox from "../utils/LimitCheck";
@@ -40,6 +41,45 @@ const CreatePokemon = () => {
         });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const answer = window.confirm("Are you sure?");
+
+    function resetForm() {
+      document.getElementById("formCreate").reset();
+      formInputs = {
+        name: "unknown",
+        height: 50,
+        weight: 50,
+        health: 50,
+        attack: 50,
+        defense: 50,
+        speed: 50,
+        types: [],
+      };
+    }
+
+    answer
+      ? (() => {
+          window.alert("Your Pokemon was saved to the database.");
+          dispatch(postPokemon(formInputs));
+
+          resetForm();
+        })()
+      : (() => {
+          window.alert("Your Pokemon wasn't saved to the database.");
+
+          resetForm();
+        })();
+  };
+
+  useEffect(() => {
+    return () => {
+      dispatch(getPokemons());
+    };
+  }, [dispatch]);
+
   useEffect(() => {
     dispatch(getTypes());
   }, [dispatch]);
@@ -54,20 +94,24 @@ const CreatePokemon = () => {
               <h2>Your Own Pokemon</h2>
               <p>Insert a name, select its stats and choose the types.</p>
             </CreateTitle>
-            <CreateForm>
+            <CreateForm
+              id="formCreate"
+              onSubmit={handleSubmit}
+              onChange={handleChange}
+            >
               <InputText>
                 <label>
                   Name:
-                  <input type="text" />
+                  <input type="text" name="name" required />
                 </label>
                 <div>
                   <label>
-                    Height:
-                    <input type="text" />
+                    Height (kg):
+                    <input type="number" name="height" defaultValue={50} />
                   </label>
                   <label>
-                    Weight:
-                    <input type="text" />
+                    Weight (m):
+                    <input type="number" name="weight" defaultValue={50} />
                   </label>
                 </div>
               </InputText>
@@ -75,26 +119,71 @@ const CreatePokemon = () => {
                 <div>
                   <label>
                     Health:
-                    <input type="range" />
+                    <input
+                      type="range"
+                      name="health"
+                      min="0"
+                      max="100"
+                      step="10"
+                    />
                   </label>
                   <label>
                     Attack:
-                    <input type="range" />
+                    <input
+                      type="range"
+                      name="attack"
+                      min="0"
+                      max="100"
+                      step="10"
+                    />
                   </label>
                 </div>
                 <div>
                   <label>
                     Defense:
-                    <input type="range" />
+                    <input
+                      type="range"
+                      name="defense"
+                      min="0"
+                      max="100"
+                      step="10"
+                    />
                   </label>
                   <label>
                     Speed:
-                    <input type="range" />
+                    <input
+                      type="range"
+                      name="speed"
+                      min="0"
+                      max="100"
+                      step="10"
+                    />
                   </label>
                 </div>
               </InputRange>
               <InputTypes>
-                <label>
+                <label>Types:</label>
+
+                <div id="checkboxContent">
+                  {types.map((t, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <input
+                          type="checkbox"
+                          value={t.name}
+                          name="types"
+                          id={`${t.name}-${index}`}
+                        />
+                        <label htmlFor={`${t.name}-${index}`}>{t.name}</label>
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+
+                <div>
+                  <input type="submit" value="Create" />
+                </div>
+                {/* <label>
                   Types:
                   <select>
                     {types.map((t, index) => {
@@ -106,7 +195,7 @@ const CreatePokemon = () => {
                     })}
                   </select>
                 </label>
-                <div></div>
+                <div></div> */}
               </InputTypes>
             </CreateForm>
           </CreateCard>
@@ -227,6 +316,10 @@ const InputTypes = styled.div`
     border: 2px solid #b889ef;
     box-sizing: border-box;
     border-radius: 20px;
+  }
+
+  div:last-child {
+    margin-top: 50px;
   }
 `;
 
