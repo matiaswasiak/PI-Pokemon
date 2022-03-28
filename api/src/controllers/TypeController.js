@@ -2,7 +2,7 @@ const axios = require("axios");
 const { Type } = require("../db");
 const { API_POKEMON_TYPE } = require("../utils/Globals");
 
-// 1. - Add types to the database
+// Add types to the database
 const addTypeDb = async () => {
   try {
     const reqType = await axios.get(API_POKEMON_TYPE);
@@ -19,7 +19,7 @@ const addTypeDb = async () => {
 };
 addTypeDb();
 
-// 2. - Types are fetched from the database and sent to the router
+// Types are fetched from the database and sent to the router
 const getTypeApi = async () => {
   const result = await Type.findAll();
   return result;

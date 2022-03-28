@@ -2,7 +2,7 @@ const axios = require("axios");
 const { Pokemon, Type } = require("../db");
 const { API_POKEMON } = require("../utils/Globals");
 
-// 1. - Get all Pokemons from API.
+// Get all Pokemons from API.
 const getPokemonsApi = async () => {
   try {
     const pokemonsRequest = await axios.get(API_POKEMON);
@@ -40,7 +40,7 @@ const objPokemonsApi = (p) => {
   return objPokeapi;
 };
 
-// 2. - Bring the Pokemons from the DB
+// Get Pokemons from the DB
 const getPokemonsDb = async () => {
   const pokemonDb = await Pokemon.findAll({
     include: Type,
@@ -69,7 +69,7 @@ const getPokemonsDb = async () => {
   }
 };
 
-// 3. - Union of all the Pokemons of API and DB
+// Union of all the Pokemons of API and DB
 const getAllPokemons = async () => {
   try {
     const pokemonApiData = await getPokemonsApi();
@@ -88,11 +88,13 @@ const getPokemonByName = async (name) => {
     let dataSpecies = [];
     name = name.toLowerCase().trim();
 
+    // Fetch to API
     let request = await axios(`https://pokeapi.co/api/v2/pokemon/${name}`).then(
       (res) => res.data
     );
     data.push(request);
 
+    // Fetch to sub API
     let requestSpecie = await axios(data[0].species.url).then(
       (res) => res.data
     );
@@ -120,7 +122,7 @@ const getPokemonByName = async (name) => {
   }
 };
 
-// 4. - Delete a pokemon from Db
+// Delete a pokemon from Db
 const deletePokemon = async (id) => {
   try {
     await Pokemon.destroy({

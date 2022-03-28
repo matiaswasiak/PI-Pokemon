@@ -9,10 +9,11 @@ const { Pokemon, Type } = require("../db");
 
 const router = Router();
 
-// Get Pokemons & Get PokemonsByName
+// Get Pokemons & Get Pokemons By Name
 router.get("/", async (req, res) => {
   const name = req.query.name;
 
+  // Get Pokemons By Name
   if (name) {
     const pokemonByName = await getPokemonByName(name);
 
