@@ -3,12 +3,8 @@ export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_TYPES = "GET_TYPES";
 export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
 export const POST_POKEMON = "POST_POKEMON";
-export const RESET_FILTERS = "RESET_FILTERS";
-export const FILTER_CREATED = "FILTER_CREATED";
-export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
-export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const GET_DETAILS = "GET_DETAILS";
+export const RESET_FILTERS = "RESET_FILTERS";
 
 // Get pokemons from the API.
 export function getPokemons() {
@@ -69,45 +65,6 @@ export function postPokemon(payload) {
   };
 }
 
-// Reset filters
-export function resetFilters() {
-  return {
-    type: RESET_FILTERS,
-  };
-}
-
-// Filter by created in API or DB.
-export function filterPokemons(payload) {
-  return {
-    type: FILTER_CREATED,
-    payload,
-  };
-}
-
-// Filter by type
-export function filterByType(payload) {
-  return {
-    type: FILTER_BY_TYPE,
-    payload,
-  };
-}
-
-// Sort by alphabet
-export function orderByName(payload) {
-  return {
-    type: ORDER_BY_NAME,
-    payload,
-  };
-}
-
-// Sort by attack
-export function orderByAttack(payload) {
-  return {
-    type: ORDER_BY_ATTACK,
-    payload,
-  };
-}
-
 // Get details
 export function getDetails(id) {
   // With Promises
@@ -131,5 +88,43 @@ export function getDetails(id) {
     } catch (error) {
       console.error("Error in action getDetails:", error.message);
     }
+  };
+}
+
+// Reset filters
+export function resetFilters() {
+  return {
+    type: RESET_FILTERS,
+  };
+}
+
+// ORDENA POR ORDEN ALFABETICO
+export function orderByName(payload) {
+  return {
+    type: "ORDER_BY_NAME",
+    payload,
+  };
+}
+
+//FILTRA POR CREADOS EN API O BASE DE DATOS
+export function filterCreated(payload) {
+  return {
+    type: "FILTER_CREATED",
+    payload,
+  };
+}
+
+//ORDENA POR FUERZA DE ATAQUE
+export function orderByAttack(payload) {
+  return {
+    type: "ORDER_BY_ATTACK",
+    payload,
+  };
+}
+
+export function filterType(payload) {
+  return {
+    type: "FILTER_BY_TYPE",
+    payload,
   };
 }

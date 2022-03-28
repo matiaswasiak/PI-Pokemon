@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getPokemons } from "../../redux/actions";
+import {
+  filterCreated,
+  filterType,
+  getPokemons,
+  getTypes,
+  orderByAttack,
+  orderByName,
+} from "../../redux/actions";
 import Card from "../organisms/Card";
 import CardDetail from "../organisms/CardDetail";
 import Pagination from "../organisms/Pagination";
@@ -12,8 +19,9 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
 
-  let pokemons = useSelector((state) => state.pokemons);
-  let dispatch = useDispatch();
+  const pokemons = useSelector((state) => state.pokemons);
+  const types = useSelector((state) => state.types);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPokemons());
@@ -51,6 +59,39 @@ const Home = () => {
       speed: pokemons[0]?.speed,
     });
   }, [pokemons]);
+
+  // Filters
+  const [, setOrden] = useState("");
+
+  useEffect(() => {
+    dispatch(getPokemons());
+    dispatch(getTypes());
+  }, [dispatch]);
+
+  function handleSort(e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
+  function handleFilterCreated(e) {
+    dispatch(filterCreated(e.target.value));
+  }
+
+  function handleSortAttack(e) {
+    e.preventDefault();
+    dispatch(orderByAttack(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
+  function handleFilterType(e) {
+    e.preventDefault();
+    dispatch(filterType(e.target.value));
+    setCurrentPage(1);
+    setOrden(` ${e.target.value}`);
+  }
 
   return (
     <div>
@@ -111,6 +152,42 @@ const Home = () => {
               defense={detail.defense}
               speed={detail.speed}
             />
+
+            <div>
+              <select onChange={(e) => handleSort(e)}>
+                <option>ORDER BY NAME</option>
+                <option value="asc">Ascending order</option>
+                <option value="desc">Descending order</option>
+              </select>
+
+              <select
+                onChange={(e) => {
+                  handleSortAttack(e);
+                }}
+              >
+                <option>STRENGTH</option>
+                <option value="strong">Stronger attack</option>
+                <option value="weak">Weaker attack</option>
+              </select>
+
+              <select
+                onChange={(e) => {
+                  handleFilterType(e);
+                }}
+              >
+                <option>BY TYPE</option>
+                {types?.map((e) => (
+                  <option value={e.nombre}>{e.nombre}</option>
+                ))}
+              </select>
+
+              <select onChange={(e) => handleFilterCreated(e)}>
+                <option>CREATOR</option>
+                <option value="all">Show all...</option>
+                <option value="api">Reals</option>
+                <option value="created">Created</option>
+              </select>
+            </div>
           </HomeContent>
         )}
       </Container>
@@ -204,5 +281,7 @@ const Gif = styled.div`
     border-radius: 20px;
   }
 `;
+
+const PokeTypes = styled.div``;
 
 export default Home;

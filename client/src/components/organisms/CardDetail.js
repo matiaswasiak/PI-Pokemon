@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Filter from "./Filter";
 
 const CardDetail = ({ image, name, health, attack, defense, speed }) => {
   return (
@@ -31,9 +30,6 @@ const CardDetail = ({ image, name, health, attack, defense, speed }) => {
           </div>
         </PokeStats>
       </PokeDetail>
-      <PokeTypes>
-        <Filter />
-      </PokeTypes>
     </HomeDetail>
   );
 };
@@ -101,7 +97,5 @@ const PokeStats = styled.div`
     border-radius: 0 0 20px 20px;
   }
 `;
-
-const PokeTypes = styled.div``;
 
 export default CardDetail;
