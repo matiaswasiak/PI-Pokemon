@@ -1,11 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { getPokemons, getTypes, postPokemon } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 import limitCheckBox from "../utils/LimitCheck";
+import styled from "styled-components";
 
 let formInputs = {
   name: "",
@@ -19,9 +18,19 @@ let formInputs = {
 };
 
 const CreatePokemon = () => {
+  // ------------------------- useDispatch ------------------------- //
   const dispatch = useDispatch();
+
+  // ------------------------- useSelector ------------------------- //
   const types = useSelector((state) => state.types);
 
+  // ------------------------- useEffect ------------------------- //
+  useEffect(() => {
+    dispatch(getPokemons());
+    dispatch(getTypes());
+  }, [dispatch]);
+
+  // ------------------------- Handlers ------------------------- //
   const handleChange = (e) => {
     limitCheckBox();
 
@@ -73,16 +82,6 @@ const CreatePokemon = () => {
           resetForm();
         })();
   };
-
-  useEffect(() => {
-    return () => {
-      dispatch(getPokemons());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getTypes());
-  }, [dispatch]);
 
   return (
     <div>
@@ -183,19 +182,6 @@ const CreatePokemon = () => {
                 <div>
                   <input type="submit" value="Create" />
                 </div>
-                {/* <label>
-                  Types:
-                  <select>
-                    {types.map((t, index) => {
-                      return (
-                        <option key={index} value={t.name}>
-                          {t.name}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
-                <div></div> */}
               </InputTypes>
             </CreateForm>
           </CreateCard>

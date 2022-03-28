@@ -1,25 +1,31 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
+import styled from "styled-components";
 
 const DetailPokemon = () => {
+  // ------------------------- useDispatch ------------------------- //
   const dispatch = useDispatch();
+
+  // ------------------------- useSelector ------------------------- //
   const allPokemons = useSelector((state) => state.allPokemons);
   const details = useSelector((state) => state.details);
+
+  // ------------------------- useParams ------------------------- //
   const { id } = useParams();
+
+  // ------------------------- useEffect ------------------------- //
+  useEffect(() => {
+    dispatch(getDetails(id));
+  }, [id]);
 
   const pokemonById =
     allPokemons.filter(
       (p) => p.id === (id.length > 10 ? id : parseInt(id))
     )[0] || details[0];
-
-  useEffect(() => {
-    dispatch(getDetails(id));
-  }, [id]);
 
   const numberId = id.padStart(3, "0");
 

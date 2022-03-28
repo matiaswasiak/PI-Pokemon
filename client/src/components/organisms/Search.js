@@ -1,12 +1,16 @@
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { getNamePokemons } from "../../redux/actions";
+import styled from "styled-components";
 
 const Search = () => {
+  // ------------------------- useDispatch ------------------------- //
   const dispatch = useDispatch();
+
+  // ------------------------- useState ------------------------- //
   const [name, setName] = useState("");
 
+  // ------------------------- Handlers ------------------------- //
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value);

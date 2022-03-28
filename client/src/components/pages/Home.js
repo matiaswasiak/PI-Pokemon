@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import {
   filterCreated,
   filterType,
@@ -14,29 +13,17 @@ import CardDetail from "../organisms/CardDetail";
 import Pagination from "../organisms/Pagination";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
+import styled from "styled-components";
 
 const Home = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(12);
-
-  const pokemons = useSelector((state) => state.pokemons);
-  const types = useSelector((state) => state.types);
+  // ------------------------- useDispatch ------------------------- //
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getPokemons());
-  }, [dispatch]);
-
-  // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = pokemons.slice(indexOfFirstPost, indexOfLastPost);
-
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // Hover section
+  // ------------------------- useState ------------------------- //
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(12);
   const [detail, setDetail] = useState({
+    // Hover section
     key: "",
     name: "",
     image: "",
@@ -46,8 +33,21 @@ const Home = () => {
     defense: "",
     speed: "",
   });
+  // Filters
+  const [, setOrden] = useState("");
+
+  // ------------------------- useSelector ------------------------- //
+  const pokemons = useSelector((state) => state.pokemons);
+  const types = useSelector((state) => state.types);
+
+  // ------------------------- useEffect ------------------------- //
+  useEffect(() => {
+    dispatch(getPokemons());
+    dispatch(getTypes());
+  }, [dispatch]);
 
   useEffect(() => {
+    // useEffect for hover in Home
     setDetail({
       key: pokemons[0]?.id,
       name: pokemons[0]?.name,
@@ -60,14 +60,15 @@ const Home = () => {
     });
   }, [pokemons]);
 
-  // Filters
-  const [, setOrden] = useState("");
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = pokemons.slice(indexOfFirstPost, indexOfLastPost);
 
-  useEffect(() => {
-    dispatch(getPokemons());
-    dispatch(getTypes());
-  }, [dispatch]);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  // ------------------------- Handlers for filters ------------------------- //
   function handleSort(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
@@ -153,7 +154,7 @@ const Home = () => {
               speed={detail.speed}
             />
 
-            <div>
+            <PokeTypes>
               <select onChange={(e) => handleSort(e)}>
                 <option>ORDER BY NAME</option>
                 <option value="asc">Ascending order</option>
@@ -187,7 +188,7 @@ const Home = () => {
                 <option value="api">Reals</option>
                 <option value="created">Created</option>
               </select>
-            </div>
+            </PokeTypes>
           </HomeContent>
         )}
       </Container>
