@@ -5,6 +5,10 @@ export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
 export const POST_POKEMON = "POST_POKEMON";
 export const GET_DETAILS = "GET_DETAILS";
 export const RESET_FILTERS = "RESET_FILTERS";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const FILTER_CREATED = "FILTER_CREATED";
+export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 
 // Get pokemons from the API.
 export function getPokemons() {
@@ -98,33 +102,34 @@ export function resetFilters() {
   };
 }
 
-// ORDENA POR ORDEN ALFABETICO
+// Order in alphabetical order
 export function orderByName(payload) {
   return {
-    type: "ORDER_BY_NAME",
+    type: ORDER_BY_NAME,
     payload,
   };
 }
 
-//FILTRA POR CREADOS EN API O BASE DE DATOS
+// Filter by created in API or DB
 export function filterCreated(payload) {
   return {
-    type: "FILTER_CREATED",
+    type: FILTER_CREATED,
     payload,
   };
 }
 
-//ORDENA POR FUERZA DE ATAQUE
+// Order by attack strength
 export function orderByAttack(payload) {
   return {
-    type: "ORDER_BY_ATTACK",
+    type: ORDER_BY_ATTACK,
     payload,
   };
 }
 
+// Filter by types
 export function filterType(payload) {
   return {
-    type: "FILTER_BY_TYPE",
+    type: FILTER_BY_TYPE,
     payload,
   };
 }
