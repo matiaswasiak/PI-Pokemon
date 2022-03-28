@@ -143,52 +143,53 @@ const Home = () => {
                 paginate={paginate}
               />
             </HomeGallery>
+            <Detail>
+              <CardDetail
+                key={detail.key}
+                image={detail.image}
+                name={detail.name}
+                health={detail.health}
+                attack={detail.attack}
+                defense={detail.defense}
+                speed={detail.speed}
+              />
 
-            <CardDetail
-              key={detail.key}
-              image={detail.image}
-              name={detail.name}
-              health={detail.health}
-              attack={detail.attack}
-              defense={detail.defense}
-              speed={detail.speed}
-            />
+              <PokeTypes>
+                <select onChange={(e) => handleSort(e)}>
+                  <option>ORDER BY NAME</option>
+                  <option value="asc">Ascending order</option>
+                  <option value="desc">Descending order</option>
+                </select>
 
-            <PokeTypes>
-              <select onChange={(e) => handleSort(e)}>
-                <option>ORDER BY NAME</option>
-                <option value="asc">Ascending order</option>
-                <option value="desc">Descending order</option>
-              </select>
+                <select
+                  onChange={(e) => {
+                    handleSortAttack(e);
+                  }}
+                >
+                  <option>STRENGTH</option>
+                  <option value="strong">Stronger attack</option>
+                  <option value="weak">Weaker attack</option>
+                </select>
 
-              <select
-                onChange={(e) => {
-                  handleSortAttack(e);
-                }}
-              >
-                <option>STRENGTH</option>
-                <option value="strong">Stronger attack</option>
-                <option value="weak">Weaker attack</option>
-              </select>
+                <select
+                  onChange={(e) => {
+                    handleFilterType(e);
+                  }}
+                >
+                  <option>BY TYPE</option>
+                  {types?.map((e) => (
+                    <option value={e.nombre}>{e.nombre}</option>
+                  ))}
+                </select>
 
-              <select
-                onChange={(e) => {
-                  handleFilterType(e);
-                }}
-              >
-                <option>BY TYPE</option>
-                {types?.map((e) => (
-                  <option value={e.nombre}>{e.nombre}</option>
-                ))}
-              </select>
-
-              <select onChange={(e) => handleFilterCreated(e)}>
-                <option>CREATOR</option>
-                <option value="all">Show all...</option>
-                <option value="api">Reals</option>
-                <option value="created">Created</option>
-              </select>
-            </PokeTypes>
+                <select onChange={(e) => handleFilterCreated(e)}>
+                  <option>CREATOR</option>
+                  <option value="all">Show all...</option>
+                  <option value="api">Reals</option>
+                  <option value="created">Created</option>
+                </select>
+              </PokeTypes>
+            </Detail>
           </HomeContent>
         )}
       </Container>
@@ -283,6 +284,44 @@ const Gif = styled.div`
   }
 `;
 
-const PokeTypes = styled.div``;
+const Detail = styled.div``;
+const PokeTypes = styled.div`
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 90px;
+  background: linear-gradient(#efdefc, #dbcffa);
+  border-radius: 20px;
+
+  select {
+    background-color: red;
+    height: 60px;
+    background-color: #d5a8f9;
+    font-family: "Lato";
+    border: solid #9816ff80;
+    outline: none;
+
+    &:first-child {
+      border-radius: 20px 0 0 20px;
+      border-right: 0;
+    }
+
+    &:nth-child(2) {
+      border-right: 0;
+      border-left: 0;
+    }
+    &:nth-child(3) {
+      border-right: 0;
+      border-left: 0;
+    }
+
+    &:last-child {
+      border-radius: 0 20px 20px 0;
+      border-left: 0;
+    }
+  }
+`;
 
 export default Home;
