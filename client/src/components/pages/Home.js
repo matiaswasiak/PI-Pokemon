@@ -152,6 +152,7 @@ const Home = () => {
                 attack={detail.attack}
                 defense={detail.defense}
                 speed={detail.speed}
+                types={detail.types}
               />
 
               <PokeTypes>

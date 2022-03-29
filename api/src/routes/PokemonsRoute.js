@@ -4,8 +4,8 @@ const {
   getPokemonByName,
   getPokemonsDb,
   deletePokemon,
+  createPokemon,
 } = require("../controllers/PokemonController");
-const { Pokemon, Type } = require("../db");
 
 const router = Router();
 
@@ -59,41 +59,34 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Create a Pokemon
 router.post("/", async (req, res) => {
   const {
     name,
+    height,
+    weight,
     health,
     attack,
     defense,
     speed,
-    height,
-    weight,
-    image,
     createdInDb,
-    type,
+    types,
+    image,
   } = req.body;
 
-  let newPokemon = await Pokemon.create({
+  const newPokemon = await createPokemon(
     name,
+    height,
+    weight,
     health,
     attack,
     defense,
     speed,
-    height,
-    weight,
-    image,
     createdInDb,
-  });
+    types,
+    image
+  );
 
-  let typeDb = await Type.findAll({
-    where: {
-      name: type,
-    },
-  });
-
-  newPokemon.addType(typeDb);
-  res.send("The pokemon has been successfully created");
+  return res.status(200).send(newPokemon);
 });
 
 // Delete a Pokemon

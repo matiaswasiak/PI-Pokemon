@@ -5,6 +5,8 @@ import { getDetails } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 import styled from "styled-components";
+import { colours } from "../utils/Colors";
+const defaultImage = "/images/Pikachu.gif";
 
 const DetailPokemon = () => {
   // ------------------------- useDispatch ------------------------- //
@@ -36,13 +38,32 @@ const DetailPokemon = () => {
         <Card>
           <CardDetail>
             <div>
-              <img src={pokemonById?.sprite} alt={pokemonById?.name} />
+              <img
+                src={pokemonById?.sprite || defaultImage}
+                alt={pokemonById?.name}
+              />
             </div>
             <InfoDetail>
               <div>
                 <h2>
                   {pokemonById?.name} N.°{numberId}
                 </h2>
+                <CardTypes>
+                  {pokemonById.types?.length ? (
+                    pokemonById.types.map((t, index) => {
+                      return (
+                        <p
+                          key={index}
+                          style={{ backgroundColor: `${colours[t]}` }}
+                        >
+                          {t}
+                        </p>
+                      );
+                    })
+                  ) : (
+                    <p>unknown</p>
+                  )}
+                </CardTypes>
               </div>
               <StatsDetail>
                 <PrincipalDetail>
@@ -230,6 +251,32 @@ const SecondaryDetail = styled.div`
     input[type="range"]:focus::-webkit-slider-runnable-track {
       background: #ccc;
     }
+  }
+`;
+
+const CardTypes = styled.div`
+  display: flex;
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    background-color: #c27ec0;
+    border-radius: 0px 20px 20px 0px;
+  }
+
+  p:first-child {
+    background-color: #a6da88;
+    border-radius: 20px 0px 0px 20px;
+  }
+
+  p:only-child {
+    border-radius: 20px;
   }
 `;
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { colours } from "../utils/Colors";
 const defaultImage = "/images/Pikachu.gif";
 
 const Card = ({
@@ -14,27 +15,6 @@ const Card = ({
   speed,
   setDetail,
 }) => {
-  const colours = {
-    normal: "#A8A77Aaa",
-    fire: "#EE8130aa",
-    water: "#6390F0aa",
-    electric: "#F7D02Caa",
-    grass: "#7AC74Caa",
-    ice: "#96D9D6aa",
-    fighting: "#C22E28aa",
-    poison: "#A33EA1aa",
-    ground: "#E2BF65aa",
-    flying: "#A98FF3aa",
-    psychic: "#F95587aa",
-    bug: "#A6B91Aaa",
-    rock: "#B6A136aa",
-    ghost: "#735797aa",
-    dragon: "#6F35FCaa",
-    dark: "#705746aa",
-    steel: "#B7B7CEaa",
-    fairy: "#D685ADaa",
-  };
-
   return (
     <Container
       onMouseEnter={() =>

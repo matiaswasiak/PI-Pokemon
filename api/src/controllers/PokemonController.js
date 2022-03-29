@@ -122,6 +122,43 @@ const getPokemonByName = async (name) => {
   }
 };
 
+const createPokemon = async (
+  name,
+  height,
+  weight,
+  health,
+  attack,
+  defense,
+  speed,
+  createdInDb,
+  types,
+  image
+) => {
+  try {
+    const newPokemon = await Pokemon.create({
+      name,
+      height,
+      weight,
+      health,
+      attack,
+      defense,
+      speed,
+      createdInDb,
+      image,
+    });
+
+    await Type.findAll({
+      where: {
+        name: types,
+      },
+    }).then((res) => newPokemon.addType(res));
+
+    return "Your pokemon was successfully created";
+  } catch (error) {
+    console.error("Error in createPokemon:", error.message);
+  }
+};
+
 // Delete a pokemon from Db
 const deletePokemon = async (id) => {
   try {
@@ -143,4 +180,5 @@ module.exports = {
   getPokemonsDb,
   deletePokemon,
   getPokemonByName,
+  createPokemon,
 };
