@@ -2,14 +2,25 @@ import styled from "styled-components";
 import { colours } from "../utils/Colors";
 const defaultImage = "/images/Pikachu.gif";
 
-const CardDetail = ({ image, name, types, health, attack, defense, speed }) => {
+const CardDetail = ({
+  image,
+  name,
+  types,
+  health,
+  attack,
+  defense,
+  speed,
+  createdInDb,
+}) => {
   return (
     <HomeDetail>
       <PokeDetail>
         <img src={image || defaultImage} alt="" />
         <h2>{name}</h2>
         <CardTypes>
-          {types?.length ? (
+          {createdInDb ? (
+            <p>{types}</p>
+          ) : types?.length ? (
             types.map((t, index) => {
               return (
                 <p key={index} style={{ backgroundColor: `${colours[t]}` }}>

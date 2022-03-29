@@ -31,6 +31,8 @@ const DetailPokemon = () => {
 
   const numberId = id.padStart(3, "0");
 
+  console.log(pokemonById);
+
   return (
     <div>
       <Header />
@@ -49,7 +51,9 @@ const DetailPokemon = () => {
                   {pokemonById?.name} N.°{numberId}
                 </h2>
                 <CardTypes>
-                  {pokemonById.types?.length ? (
+                  {pokemonById.createdInDb ? (
+                    <></>
+                  ) : pokemonById.types?.length ? (
                     pokemonById.types.map((t, index) => {
                       return (
                         <p

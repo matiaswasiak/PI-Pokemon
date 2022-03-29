@@ -33,6 +33,7 @@ const Home = () => {
     defense: "",
     speed: "",
   });
+
   // Filters
   const [, setOrden] = useState("");
 
@@ -128,12 +129,17 @@ const Home = () => {
                         id={pokemon.id}
                         name={pokemon.name}
                         image={pokemon.sprite}
-                        types={pokemon.types}
+                        types={
+                          pokemon.createdInDb
+                            ? pokemon.Types[0]?.name
+                            : pokemon.types
+                        }
                         health={pokemon.health}
                         attack={pokemon.attack}
                         defense={pokemon.defense}
                         speed={pokemon.speed}
                         setDetail={setDetail}
+                        createdInDb={pokemon.createdInDb}
                       />
                     );
                   })
@@ -157,6 +163,7 @@ const Home = () => {
                 defense={detail.defense}
                 speed={detail.speed}
                 types={detail.types}
+                createdInDb={detail.createdInDb}
               />
 
               <PokeTypes>

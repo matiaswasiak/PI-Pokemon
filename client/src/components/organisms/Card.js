@@ -14,11 +14,22 @@ const Card = ({
   defense,
   speed,
   setDetail,
+  createdInDb,
 }) => {
   return (
     <Container
       onMouseEnter={() =>
-        setDetail({ key, name, image, types, health, attack, defense, speed })
+        setDetail({
+          key,
+          name,
+          image,
+          types,
+          health,
+          attack,
+          defense,
+          speed,
+          createdInDb,
+        })
       }
     >
       <CardImage to={`/detail/${id}`}>
@@ -30,7 +41,9 @@ const Card = ({
         </CardTitle>
 
         <CardTypes>
-          {types?.length ? (
+          {createdInDb ? (
+            <p>{types}</p>
+          ) : types?.length ? (
             types.map((t, index) => {
               return (
                 <p key={index} style={{ backgroundColor: `${colours[t]}` }}>
