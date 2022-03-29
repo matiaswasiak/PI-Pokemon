@@ -219,6 +219,8 @@ const Container = styled.main`
   height: calc(100vh - 160px);
   padding: 60px;
   background: linear-gradient(#e0cfeb, #c9b7fa);
+  min-height: 650px;
+  min-width: 410px;
 `;
 
 const HomeContent = styled.div`
@@ -226,10 +228,14 @@ const HomeContent = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 100%;
+  min-height: 650px;
+  max-width: 1710px;
+  margin: 0 auto;
 `;
 
 const HomeGallery = styled.div`
-  width: 1210px;
+  max-width: 1210px;
+  width: 100%;
   height: 100%;
   background: linear-gradient(#efdefc, #dbcffa);
   border-radius: 20px;
@@ -241,7 +247,6 @@ const Gallery = styled.div`
   justify-content: center;
   grid-template-columns: repeat(4, min-content);
   gap: 30px;
-  width: 1210px;
   height: calc(100% - 60px);
   padding: 40px 0;
   overflow-x: hidden;
@@ -267,6 +272,26 @@ const Gallery = styled.div`
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(#9816ff80, #353ab080);
+  }
+
+  @media (max-width: 1700px) {
+    grid-template-columns: repeat(3, min-content);
+  }
+
+  @media (max-width: 1410px) {
+    grid-template-columns: repeat(2, min-content);
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(3, min-content);
+  }
+
+  @media (max-width: 970px) {
+    grid-template-columns: repeat(2, min-content);
+  }
+
+  @media (max-width: 690px) {
+    grid-template-columns: repeat(1, min-content);
   }
 `;
 
@@ -302,9 +327,16 @@ const Gif = styled.div`
 const Detail = styled.div`
   background: linear-gradient(#efdefc, #dbcffa);
   border-radius: 20px;
+  min-height: 650px;
+  min-width: 450px;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 `;
 
 const PokeTypes = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

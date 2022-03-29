@@ -27,7 +27,8 @@ const Container = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1210px;
+  max-width: 1210px;
+  width: 100%;
   height: 60px;
   background-color: #b6a1ea;
   border-radius: 0 0 20px 20px;
@@ -35,6 +36,7 @@ const Container = styled.nav`
 
   ul {
     display: flex;
+    padding: 0;
 
     li {
       margin: 0 15px;

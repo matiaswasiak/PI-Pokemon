@@ -14,6 +14,7 @@ const Container = styled.footer`
   display: flex;
   height: 60px;
   background: linear-gradient(#353ab080, #9816ff80);
+  min-width: 410px;
 `;
 const FooterInfo = styled.div`
   display: flex;

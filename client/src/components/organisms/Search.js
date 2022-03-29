@@ -36,11 +36,12 @@ const Search = () => {
 const SearchBar = styled.form`
   display: flex;
   height: 50px;
+  width: 40%;
 
   input:first-child {
     position: relative;
     box-sizing: border-box;
-    width: 700px;
+    width: 100%;
     height: 100%;
     padding: 0 20px;
     font-size: 16px;
@@ -69,6 +70,10 @@ const SearchBar = styled.form`
     &:hover {
       background-color: #9816ff80;
     }
+  }
+
+  @media (max-width: 1020px) {
+    display: none;
   }
 `;
 

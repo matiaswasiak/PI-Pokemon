@@ -62,8 +62,10 @@ const CardDetail = ({
 
 const HomeDetail = styled.div`
   width: 540px;
+  min-height: 540px;
   height: calc(100% - 120px);
   border-radius: 20px;
+  width: 100%;
 `;
 
 const PokeDetail = styled.div`
