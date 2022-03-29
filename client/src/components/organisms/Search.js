@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation, useParams } from "react-router-dom";
 import { getNamePokemons } from "../../redux/actions";
 import styled from "styled-components";
 
@@ -9,6 +10,12 @@ const Search = () => {
 
   // ------------------------- useState ------------------------- //
   const [name, setName] = useState("");
+
+  // ------------------------- useParams ------------------------- //
+  const { id } = useParams();
+
+  // ------------------------- useLocation ------------------------- //
+  let location = useLocation();
 
   // ------------------------- Handlers ------------------------- //
   function handleInputChange(e) {
@@ -23,12 +30,18 @@ const Search = () => {
 
   return (
     <SearchBar>
-      <input
-        type="text"
-        placeholder="Search for pokemons..."
-        onChange={(e) => handleInputChange(e)}
-      />
-      <input type="submit" onClick={(e) => handleSubmit(e)} />
+      {id || location.pathname === "/create" ? (
+        <></>
+      ) : (
+        <>
+          <input
+            type="text"
+            placeholder="Search for pokemons..."
+            onChange={(e) => handleInputChange(e)}
+          />
+          <input type="submit" onClick={(e) => handleSubmit(e)} />
+        </>
+      )}
     </SearchBar>
   );
 };

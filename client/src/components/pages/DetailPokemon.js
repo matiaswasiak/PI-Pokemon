@@ -31,8 +31,6 @@ const DetailPokemon = () => {
 
   const numberId = id.padStart(3, "0");
 
-  console.log(pokemonById);
-
   return (
     <div>
       <Header />
