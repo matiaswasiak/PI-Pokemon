@@ -94,6 +94,10 @@ const Home = () => {
     setOrden(` ${e.target.value}`);
   }
 
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <div>
       <Header />
@@ -157,7 +161,7 @@ const Home = () => {
 
               <PokeTypes>
                 <select onChange={(e) => handleSort(e)}>
-                  <option>ORDER BY NAME</option>
+                  <option value="all">ORDER BY NAME</option>
                   <option value="asc">Ascending order</option>
                   <option value="desc">Descending order</option>
                 </select>
@@ -167,7 +171,7 @@ const Home = () => {
                     handleSortAttack(e);
                   }}
                 >
-                  <option>STRENGTH</option>
+                  <option value="all">STRENGTH</option>
                   <option value="strong">Stronger attack</option>
                   <option value="weak">Weaker attack</option>
                 </select>
@@ -181,7 +185,7 @@ const Home = () => {
 
                   {types?.map((e) => (
                     <option key={e.id} value={e.name}>
-                      {e.name}
+                      {capitalizeFirstLetter(e.name)}
                     </option>
                   ))}
                 </select>
@@ -288,15 +292,17 @@ const Gif = styled.div`
   }
 `;
 
-const Detail = styled.div``;
+const Detail = styled.div`
+  background: linear-gradient(#efdefc, #dbcffa);
+  border-radius: 20px;
+`;
+
 const PokeTypes = styled.div`
-  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   height: 90px;
-  background: linear-gradient(#efdefc, #dbcffa);
   border-radius: 20px;
 
   select {
@@ -304,7 +310,7 @@ const PokeTypes = styled.div`
     height: 60px;
     background-color: #d5a8f9;
     font-family: "Lato";
-    border: solid #9816ff80;
+    border: 1px solid #9816ff80;
     outline: none;
 
     &:first-child {
@@ -324,6 +330,28 @@ const PokeTypes = styled.div`
     &:last-child {
       border-radius: 0 20px 20px 0;
       border-left: 0;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #fefffc80;
+      border-radius: 20px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#9816ff50, #353ab050);
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(#9816ff80, #353ab080);
     }
   }
 `;

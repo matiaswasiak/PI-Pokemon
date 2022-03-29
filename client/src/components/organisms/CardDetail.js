@@ -52,7 +52,6 @@ const CardDetail = ({ image, name, types, health, attack, defense, speed }) => {
 const HomeDetail = styled.div`
   width: 540px;
   height: calc(100% - 120px);
-  background: linear-gradient(#efdefc, #dbcffa);
   border-radius: 20px;
 `;
 
@@ -64,8 +63,12 @@ const PokeDetail = styled.div`
   height: calc(100% - 150px);
 
   img {
+    margin-top: 20px;
+  }
+
+  img {
     width: 300px;
-    margin: 20px 0;
+    margin: 0;
   }
 
   h2 {
@@ -73,7 +76,6 @@ const PokeDetail = styled.div`
     font-size: 45px;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 20px;
   }
 `;
 
@@ -117,6 +119,7 @@ const PokeStats = styled.div`
 
 const CardTypes = styled.div`
   display: flex;
+  margin-bottom: 10px;
 
   p {
     display: flex;
