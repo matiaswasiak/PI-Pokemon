@@ -120,8 +120,8 @@ const Home = () => {
                       </h2>
                     ) : (
                       <Card
+                        key={index}
                         id={pokemon.id}
-                        key={pokemon.id}
                         name={pokemon.name}
                         image={pokemon.sprite}
                         types={pokemon.types}
@@ -177,8 +177,11 @@ const Home = () => {
                   }}
                 >
                   <option>BY TYPE</option>
+
                   {types?.map((e) => (
-                    <option value={e.nombre}>{e.nombre}</option>
+                    <option key={e.id} value={e.name}>
+                      {e.name}
+                    </option>
                   ))}
                 </select>
 

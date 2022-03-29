@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+const defaultImage = "/images/Pikachu.gif";
 
 const Card = ({
   id,
@@ -41,7 +42,7 @@ const Card = ({
       }
     >
       <CardImage to={`/detail/${id}`}>
-        <img src={image} alt="imagen" />
+        <img src={image || defaultImage} alt="imagen" />
       </CardImage>
       <CardInfo>
         <CardTitle>
