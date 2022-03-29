@@ -17,4 +17,5 @@ export const colours = {
   dark: "#705746aa",
   steel: "#B7B7CEaa",
   fairy: "#D685ADaa",
+  shadow: "#8a57c3",
 };

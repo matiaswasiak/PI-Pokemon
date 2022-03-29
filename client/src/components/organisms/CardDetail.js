@@ -19,7 +19,7 @@ const CardDetail = ({
         <h2>{name}</h2>
         <CardTypes>
           {createdInDb ? (
-            <p>{types}</p>
+            <p style={{ backgroundColor: `${colours[types]}` }}>{types}</p>
           ) : types?.length ? (
             types.map((t, index) => {
               return (

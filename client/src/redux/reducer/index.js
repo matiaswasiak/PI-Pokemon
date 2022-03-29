@@ -161,7 +161,7 @@ function rootReducer(state = initialState, action) {
         action.payload === "all"
           ? pokemonByType
           : pokemonByType.filter((e) => e.types.includes(action.payload));
-      console.log(filteredState);
+
       return {
         ...state,
         pokemons: filteredState.length > 0 ? filteredState : pokemonByType,
