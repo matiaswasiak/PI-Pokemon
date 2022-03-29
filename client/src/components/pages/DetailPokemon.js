@@ -178,6 +178,7 @@ const InfoDetail = styled.div`
 
   div {
     h2 {
+      margin: 0;
       text-align: center;
       font-size: 40px;
       font-weight: 600;
