@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getTypes, postPokemon } from "../../redux/actions";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
 import limitCheckBox from "../utils/LimitCheck";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 let formInputs = {
   name: "",
@@ -23,6 +24,9 @@ const CreatePokemon = () => {
 
   // ------------------------- useSelector ------------------------- //
   const types = useSelector((state) => state.types);
+
+  // ------------------------- useNavigate ------------------------- //
+  const navigate = useNavigate();
 
   // ------------------------- useEffect ------------------------- //
   useEffect(() => {
@@ -75,6 +79,7 @@ const CreatePokemon = () => {
           dispatch(postPokemon(formInputs));
 
           resetForm();
+          navigate("/home");
         })()
       : (() => {
           window.alert("Your Pokemon wasn't saved to the database.");
@@ -101,16 +106,33 @@ const CreatePokemon = () => {
               <InputText>
                 <label>
                   Name:
-                  <input type="text" name="name" required />
+                  <input
+                    type="text"
+                    name="name"
+                    pattern="[A-Za-z0-9]+"
+                    required
+                  />
                 </label>
                 <div>
                   <label>
                     Height (kg):
-                    <input type="number" name="height" defaultValue={50} />
+                    <input
+                      type="number"
+                      name="height"
+                      min="0"
+                      max="255"
+                      defaultValue={50}
+                    />
                   </label>
                   <label>
                     Weight (m):
-                    <input type="number" name="weight" defaultValue={50} />
+                    <input
+                      type="number"
+                      name="weight"
+                      min="0"
+                      max="255"
+                      defaultValue={50}
+                    />
                   </label>
                 </div>
               </InputText>

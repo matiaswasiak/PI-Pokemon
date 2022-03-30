@@ -40,41 +40,6 @@ const objPokemonsApi = (p) => {
   return objPokeapi;
 };
 
-// Get Pokemons from the DB
-// const getPokemonsDb = async () => {
-//   const pokemonDb = await Pokemon.findAll({
-//     include: {
-//       model: Type,
-//       attributes: ["name"],
-//       through: {
-//         attributes: [],
-//       },
-//     },
-//   });
-
-//   const objPokeDb = pokemonDb.map((pokemonDb) => {
-//     return {
-//       id: pokemonDb.dataValues.id,
-//       name: pokemonDb.dataValues.name,
-//       health: pokemonDb.dataValues.health,
-//       attack: pokemonDb.dataValues.attack,
-//       defense: pokemonDb.dataValues.defense,
-//       speed: pokemonDb.dataValues.speed,
-//       height: pokemonDb.dataValues.height,
-//       weight: pokemonDb.dataValues.weight,
-//       sprite: pokemonDb.dataValues.image,
-//       // types: pokemonDb.dataValues.types?.map((e) => e.name),
-//       createdInDb: pokemonDb.dataValues.createdInDb,
-//     };
-//   });
-
-//   try {
-//     return objPokeDb;
-//   } catch (error) {
-//     console.log("Error in getPokemonsDb:", error.message);
-//   }
-// };
-
 const getPokemonsDb = async () => {
   try {
     return (
