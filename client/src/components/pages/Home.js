@@ -125,7 +125,7 @@ const Home = () => {
                       </h2>
                     ) : (
                       <Card
-                        key={index}
+                        key={pokemon.id}
                         id={pokemon.id}
                         name={pokemon.name}
                         image={pokemon.sprite}
@@ -190,7 +190,7 @@ const Home = () => {
                     handleFilterType(e);
                   }}
                 >
-                  <option>BY TYPE</option>
+                  <option value="all">BY TYPE</option>
 
                   {types?.map((e) => (
                     <option key={e.id} value={e.name}>

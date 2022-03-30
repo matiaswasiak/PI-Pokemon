@@ -5,7 +5,6 @@ const defaultImage = "/images/Pikachu.gif";
 
 const Card = ({
   id,
-  key,
   name,
   image,
   types,
@@ -21,7 +20,6 @@ const Card = ({
     <Container
       onMouseEnter={() =>
         setDetail({
-          key,
           name,
           image,
           types,
