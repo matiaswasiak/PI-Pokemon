@@ -40,7 +40,6 @@ const Home = () => {
 
   // ------------------------- useSelector ------------------------- //
   const pokemons = useSelector((state) => state.pokemons);
-  console.log(pokemons);
   const types = useSelector((state) => state.types);
 
   // ------------------------- useEffect ------------------------- //
