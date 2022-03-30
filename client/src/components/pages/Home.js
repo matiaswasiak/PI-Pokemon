@@ -20,6 +20,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   // ------------------------- useState ------------------------- //
+
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
   const [detail, setDetail] = useState({
@@ -39,6 +40,7 @@ const Home = () => {
 
   // ------------------------- useSelector ------------------------- //
   const pokemons = useSelector((state) => state.pokemons);
+  console.log(pokemons);
   const types = useSelector((state) => state.types);
 
   // ------------------------- useEffect ------------------------- //
@@ -46,6 +48,15 @@ const Home = () => {
     dispatch(getPokemons());
     dispatch(getTypes());
   }, [dispatch]);
+
+  let localS = localStorage.getItem("page");
+  console.log(currentPage, localStorage.getItem("page"));
+
+  useEffect(() => {
+    if (localS !== null) {
+      setCurrentPage(Number(localS));
+    }
+  }, []);
 
   useEffect(() => {
     // useEffect for hover in Home
@@ -74,17 +85,22 @@ const Home = () => {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
+    localStorage.setItem("page", 1);
     setOrden(`Ordered ${e.target.value}`);
   }
 
   function handleFilterCreated(e) {
     dispatch(filterCreated(e.target.value));
+    setCurrentPage(1);
+    localStorage.setItem("page", 1);
+    setType();
   }
 
   function handleSortAttack(e) {
     e.preventDefault();
     dispatch(orderByAttack(e.target.value));
     setCurrentPage(1);
+    localStorage.setItem("page", 1);
     setOrden(`Ordered ${e.target.value}`);
   }
 
@@ -92,11 +108,16 @@ const Home = () => {
     e.preventDefault();
     dispatch(filterType(e.target.value));
     setCurrentPage(1);
+    localStorage.setItem("page", 1);
     setOrden(`Ordered ${e.target.value}`);
   }
 
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  function setType() {
+    document.getElementById("allTypes").value = "all";
   }
 
   return (
@@ -152,6 +173,7 @@ const Home = () => {
                 postsPerPage={postsPerPage}
                 totalPosts={pokemons.length}
                 paginate={paginate}
+                currentPage={currentPage}
               />
             </HomeGallery>
             <Detail>
@@ -186,6 +208,7 @@ const Home = () => {
                 </select>
 
                 <select
+                  id="allTypes"
                   onChange={(e) => {
                     handleFilterType(e);
                   }}
@@ -200,7 +223,7 @@ const Home = () => {
                 </select>
 
                 <select onChange={(e) => handleFilterCreated(e)}>
-                  <option>CREATOR</option>
+                  <option disabled>CREATOR</option>
                   <option value="all">Show all...</option>
                   <option value="api">Reals</option>
                   <option value="created">Created</option>

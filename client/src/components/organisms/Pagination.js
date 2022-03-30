@@ -1,22 +1,44 @@
 import styled from "styled-components";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   const pageNumbers = [];
+  const maxPages = Math.ceil(totalPosts / postsPerPage);
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= maxPages; i++) {
     pageNumbers.push(i);
   }
+
+  const setPage = (number) => {
+    paginate(number);
+    localStorage.setItem("page", number);
+  };
 
   return (
     <Container>
       <ul>
+        <li>
+          <a
+            href="#"
+            onClick={() => currentPage > 1 && setPage(currentPage - 1)}
+          >
+            prev
+          </a>
+        </li>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <a onClick={() => paginate(number)} href="#">
+            <a onClick={() => setPage(number)} href="#">
               {number}
             </a>
           </li>
         ))}
+        <li>
+          <a
+            href="#"
+            onClick={() => currentPage !== maxPages && setPage(currentPage + 1)}
+          >
+            next
+          </a>
+        </li>
       </ul>
     </Container>
   );
