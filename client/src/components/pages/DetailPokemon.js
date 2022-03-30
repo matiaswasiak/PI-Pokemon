@@ -172,6 +172,7 @@ const Card = styled.div`
 const CardDetail = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin: auto;
 
@@ -188,13 +189,14 @@ const InfoDetail = styled.div`
   flex-direction: column;
   align-items: center;
   width: 500px;
-  height: 500px;
+  height: min-content;
+  padding: 40px 0;
   background-color: #ffffff50;
   border-radius: 20px;
 
   div {
     h2 {
-      margin: 0;
+      margin: 0 auto;
       text-align: center;
       font-size: 40px;
       font-weight: 600;
@@ -275,6 +277,7 @@ const SecondaryDetail = styled.div`
 
 const CardTypes = styled.div`
   display: flex;
+  justify-content: center;
 
   p {
     display: flex;
