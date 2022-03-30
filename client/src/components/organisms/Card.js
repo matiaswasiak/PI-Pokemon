@@ -15,6 +15,7 @@ const Card = ({
   speed,
   setDetail,
   createdInDb,
+  Types,
 }) => {
   return (
     <Container
@@ -29,6 +30,7 @@ const Card = ({
           defense,
           speed,
           createdInDb,
+          Types,
         })
       }
     >
@@ -43,7 +45,13 @@ const Card = ({
         <CardTypes>
           {createdInDb ? (
             <>
-              <p style={{ backgroundColor: `${colours[types]}` }}>{types}</p>
+              {Types?.map((e) => (e = e.name)).map((t, index) => {
+                return (
+                  <p key={index} style={{ backgroundColor: `${colours[t]}` }}>
+                    {t}
+                  </p>
+                );
+              })}
             </>
           ) : types?.length ? (
             types.map((t, index) => {

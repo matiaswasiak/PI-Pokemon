@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { colours } from "../utils/Colors";
 const defaultImage = "/images/Pikachu.gif";
@@ -11,6 +12,7 @@ const CardDetail = ({
   defense,
   speed,
   createdInDb,
+  Types,
 }) => {
   return (
     <HomeDetail>
@@ -19,7 +21,15 @@ const CardDetail = ({
         <h2>{name}</h2>
         <CardTypes>
           {createdInDb ? (
-            <p style={{ backgroundColor: `${colours[types]}` }}>{types}</p>
+            <>
+              {Types?.map((e) => (e = e.name)).map((t, index) => {
+                return (
+                  <p key={index} style={{ backgroundColor: `${colours[t]}` }}>
+                    {t}
+                  </p>
+                );
+              })}
+            </>
           ) : types?.length ? (
             types.map((t, index) => {
               return (

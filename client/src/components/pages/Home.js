@@ -74,7 +74,7 @@ const Home = () => {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    setOrden(`Ordered ${e.target.value}`);
   }
 
   function handleFilterCreated(e) {
@@ -85,14 +85,14 @@ const Home = () => {
     e.preventDefault();
     dispatch(orderByAttack(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    setOrden(`Ordered ${e.target.value}`);
   }
 
   function handleFilterType(e) {
     e.preventDefault();
     dispatch(filterType(e.target.value));
     setCurrentPage(1);
-    setOrden(` ${e.target.value}`);
+    setOrden(`Ordered ${e.target.value}`);
   }
 
   function capitalizeFirstLetter(str) {
@@ -140,6 +140,7 @@ const Home = () => {
                         speed={pokemon.speed}
                         setDetail={setDetail}
                         createdInDb={pokemon.createdInDb}
+                        Types={pokemon.Types}
                       />
                     );
                   })
@@ -164,6 +165,7 @@ const Home = () => {
                 speed={detail.speed}
                 types={detail.types}
                 createdInDb={detail.createdInDb}
+                Types={detail.Types}
               />
 
               <PokeTypes>

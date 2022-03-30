@@ -50,8 +50,24 @@ const DetailPokemon = () => {
                 </h2>
                 <CardTypes>
                   {pokemonById.createdInDb ? (
-                    <></>
+                    <>
+                      {/* {console.log(pokemonById)} */}
+                      {/* {console.log(pokemonById.Types?.map((e) => (e = e.name)))} */}
+                      {pokemonById.Types?.map((e) => (e = e.name)).map(
+                        (t, index) => {
+                          return (
+                            <p
+                              key={index}
+                              style={{ backgroundColor: `${colours[t]}` }}
+                            >
+                              {t}
+                            </p>
+                          );
+                        }
+                      )}
+                    </>
                   ) : pokemonById.types?.length ? (
+                    (console.log(pokemonById),
                     pokemonById.types.map((t, index) => {
                       return (
                         <p
@@ -61,7 +77,7 @@ const DetailPokemon = () => {
                           {t}
                         </p>
                       );
-                    })
+                    }))
                   ) : (
                     <p>unknown</p>
                   )}
