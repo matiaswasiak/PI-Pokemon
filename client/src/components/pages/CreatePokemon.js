@@ -206,12 +206,36 @@ const Card = styled.div`
   background: linear-gradient(#efdffd, #dbcffa);
   border-radius: 20px;
   margin: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #fefffc80;
+    border-radius: 20px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#9816ff50, #353ab050);
+    border-radius: 20px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#9816ff80, #353ab080);
+  }
 `;
 
 const CreateCard = styled.div`
   width: 700px;
-  margin: 0 auto;
-  height: 100%;
+  margin: auto;
+  height: min-content;
 `;
 
 const CreateForm = styled.form``;
@@ -230,11 +254,15 @@ const InputText = styled.div`
       width: 330px;
       height: 50px;
       padding: 0 20px;
-      background: #ffffff;
-      opacity: 0.2;
+      background: #e5daf1;
       border: 2px solid #b889ef;
       box-sizing: border-box;
       border-radius: 20px;
+
+      &:focus-visible {
+        font-size: 15px;
+        outline: 0 solid #d5a8f9;
+      }
     }
   }
 
@@ -296,16 +324,46 @@ const InputTypes = styled.div`
   div {
     margin-top: 13px;
     width: 700px;
-    height: 50px;
-    background: #ffffff;
-    opacity: 0.2;
+    min-height: min-content;
+    padding: 20px;
+    background: #e5daf1;
     border: 2px solid #b889ef;
     box-sizing: border-box;
     border-radius: 20px;
+
+    input {
+      margin-bottom: 20px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    label {
+      cursor: pointer;
+      margin-right: 20px;
+      color: #00000095;
+    }
   }
 
   div:last-child {
-    margin-top: 50px;
+    margin-top: 20px;
+    padding: 0;
+    border: none;
+
+    input {
+      margin: 0;
+      width: 100%;
+      height: 50px;
+      border-radius: 20px;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #ffffff;
+      background-color: #d5a8f9;
+
+      &:hover {
+        background-color: #9816ff80;
+      }
+    }
   }
 `;
 
