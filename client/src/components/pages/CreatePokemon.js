@@ -6,6 +6,7 @@ import Header from "../sections/Header";
 import limitCheckBox from "../utils/LimitCheck";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import validations from "../utils/Validations";
 
 let formInputs = {
   name: "",
@@ -25,6 +26,9 @@ const CreatePokemon = () => {
   // ------------------------- useSelector ------------------------- //
   const types = useSelector((state) => state.types);
 
+  // ------------------------- useSelector ------------------------- //
+  const [error, setError] = useState({});
+
   // ------------------------- useNavigate ------------------------- //
   const navigate = useNavigate();
 
@@ -35,6 +39,7 @@ const CreatePokemon = () => {
   }, [dispatch]);
 
   // ------------------------- Handlers ------------------------- //
+
   const handleChange = (e) => {
     limitCheckBox();
 
@@ -52,6 +57,7 @@ const CreatePokemon = () => {
           ...formInputs,
           [e.target.name]: e.target.value,
         });
+    setError(validations({ ...formInputs, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
@@ -62,7 +68,7 @@ const CreatePokemon = () => {
     function resetForm() {
       document.getElementById("formCreate").reset();
       formInputs = {
-        name: "unknown",
+        name: "",
         height: 50,
         weight: 50,
         health: 50,
@@ -109,13 +115,13 @@ const CreatePokemon = () => {
                   <input
                     type="text"
                     name="name"
-                    pattern="[A-Za-z0-9]+"
-                    required
+                    pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
                   />
                 </label>
+                {error.name && <p> {error.name}</p>}
                 <div>
                   <label>
-                    Height (kg):
+                    Height (m):
                     <input
                       type="number"
                       name="height"
@@ -124,8 +130,9 @@ const CreatePokemon = () => {
                       defaultValue={50}
                     />
                   </label>
+                  {error.height && <p> {error.height}</p>}
                   <label>
-                    Weight (m):
+                    Weight (kg):
                     <input
                       type="number"
                       name="weight"
@@ -134,6 +141,7 @@ const CreatePokemon = () => {
                       defaultValue={50}
                     />
                   </label>
+                  {error.weight && <p> {error.weight}</p>}
                 </div>
               </InputText>
               <InputRange>
@@ -202,7 +210,13 @@ const CreatePokemon = () => {
                 </div>
 
                 <div>
-                  <input type="submit" value="Create" />
+                  {error.name ||
+                  formInputs.name.trim().length === 0 ||
+                  formInputs.types.length === 0 ? (
+                    <input value="Createn't " />
+                  ) : (
+                    <input type="submit" value="Create" />
+                  )}
                 </div>
               </InputTypes>
             </CreateForm>

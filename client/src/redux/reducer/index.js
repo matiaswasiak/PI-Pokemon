@@ -63,10 +63,10 @@ function rootReducer(state = initialState, action) {
       let sortedName;
       if (action.payload === "asc") {
         sortedName = state.pokemons.sort(function (a, b) {
-          if (a.name > b.name) {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
             return 1;
           }
-          if (b.name > a.name) {
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
             return -1;
           }
           return 0;
@@ -74,10 +74,10 @@ function rootReducer(state = initialState, action) {
       }
       if (action.payload === "desc") {
         sortedName = state.pokemons.sort(function (a, b) {
-          if (a.name > b.name) {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
             return -1;
           }
-          if (b.name > a.name) {
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
             return 1;
           }
           return 0;
