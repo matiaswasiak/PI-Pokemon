@@ -105,7 +105,8 @@ const Home = () => {
 
   function handleFilterType(e) {
     e.preventDefault();
-    dispatch(filterType(e.target.value));
+    let createdApiDb = document.getElementById("createdApiDb").value;
+    dispatch(filterType(e.target.value, createdApiDb));
     setCurrentPage(1);
     localStorage.setItem("page", 1);
     setOrden(`Ordered ${e.target.value}`);
@@ -221,10 +222,13 @@ const Home = () => {
                   ))}
                 </select>
 
-                <select onChange={(e) => handleFilterCreated(e)}>
+                <select
+                  id="createdApiDb"
+                  onChange={(e) => handleFilterCreated(e)}
+                >
                   <option disabled>CREATOR</option>
                   <option value="all">Show all...</option>
-                  <option value="api">Reals</option>
+                  <option value="api">Api</option>
                   <option value="created">Created</option>
                 </select>
               </PokeTypes>

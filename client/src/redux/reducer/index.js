@@ -157,7 +157,8 @@ function rootReducer(state = initialState, action) {
 
     case FILTER_BY_TYPE: // Filter by types
       const pokemonByType = state.allPokemons;
-      const filteredState =
+      console.log(action.createdApiDb);
+      let filteredState =
         action.payload === "all"
           ? pokemonByType
           : pokemonByType.filter(
@@ -166,7 +167,15 @@ function rootReducer(state = initialState, action) {
                 e.Types?.map((e) => (e = e.name)).includes(action.payload)
               // console.log(e.Types?.map((e) => (e = e.name)))
             );
+      if (action.createdApiDb === "api") {
+        filteredState = filteredState.filter((e) => !e.createdInDb);
+      }
+      if (action.createdApiDb === "created") {
+        filteredState = filteredState.filter((e) => e.createdInDb);
+      }
 
+      filteredState.length === 0 &&
+        window.alert("There is no such type in the created Pokemons");
       return {
         ...state,
         pokemons: filteredState.length > 0 ? filteredState : pokemonByType,

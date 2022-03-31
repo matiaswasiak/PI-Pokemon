@@ -127,9 +127,10 @@ export function orderByAttack(payload) {
 }
 
 // Filter by types
-export function filterType(payload) {
+export function filterType(payload, createdApiDb) {
   return {
     type: FILTER_BY_TYPE,
     payload,
+    createdApiDb,
   };
 }
