@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { colours } from "../utils/Colors";
 const defaultImage = "/images/Pikachu.gif";
@@ -17,7 +16,7 @@ const CardDetail = ({
   return (
     <HomeDetail>
       <PokeDetail>
-        <img src={image || defaultImage} alt="" />
+        <img src={image || defaultImage} alt="detail of Pokemon" />
         <h2>{name}</h2>
         <CardTypes>
           {createdInDb ? (
@@ -46,21 +45,21 @@ const CardDetail = ({
         <PokeStats>
           <div>
             <p>
-              <img src="/images/Health.svg" alt="" />
+              <img src="/images/Health.svg" alt="health logo" />
               {health}%
             </p>
             <p>
-              <img src="/images/Defense.svg" alt="" />
+              <img src="/images/Defense.svg" alt="defense logo" />
               {defense}%
             </p>
           </div>
           <div>
             <p>
-              <img src="/images/Attack.svg" alt="" />
+              <img src="/images/Attack.svg" alt="attack logo" />
               {attack}%
             </p>
             <p>
-              <img src="/images/Speed.svg" alt="" />
+              <img src="/images/Speed.svg" alt="speed logo" />
               {speed}%
             </p>
           </div>
@@ -71,11 +70,10 @@ const CardDetail = ({
 };
 
 const HomeDetail = styled.div`
-  width: 540px;
+  width: 100%;
   min-height: 540px;
   height: calc(100% - 120px);
   border-radius: 20px;
-  width: 100%;
 `;
 
 const PokeDetail = styled.div`

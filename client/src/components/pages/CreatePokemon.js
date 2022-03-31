@@ -117,8 +117,8 @@ const CreatePokemon = () => {
                     name="name"
                     pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
                   />
+                  {error.name && <p>{error.name}</p>}
                 </label>
-                {error.name && <p> {error.name}</p>}
                 <div>
                   <label>
                     Height (m):
@@ -129,8 +129,8 @@ const CreatePokemon = () => {
                       max="255"
                       defaultValue={50}
                     />
+                    {error.height && <p> {error.height}</p>}
                   </label>
-                  {error.height && <p> {error.height}</p>}
                   <label>
                     Weight (kg):
                     <input
@@ -140,8 +140,8 @@ const CreatePokemon = () => {
                       max="255"
                       defaultValue={50}
                     />
+                    {error.weight && <p> {error.weight}</p>}
                   </label>
-                  {error.weight && <p> {error.weight}</p>}
                 </div>
               </InputText>
               <InputRange>
@@ -213,7 +213,7 @@ const CreatePokemon = () => {
                   {error.name ||
                   formInputs.name.trim().length === 0 ||
                   formInputs.types.length === 0 ? (
-                    <input value="Createn't " />
+                    <UselessButton>Create</UselessButton>
                   ) : (
                     <input type="submit" value="Create" />
                   )}
@@ -283,6 +283,13 @@ const InputText = styled.div`
     font-style: normal;
     font-weight: 600;
     font-size: 26px;
+
+    p {
+      margin-top: -10px;
+      margin-bottom: 30px;
+      font-size: 18px;
+      color: red;
+    }
 
     input {
       margin-top: 13px;
@@ -395,12 +402,28 @@ const InputTypes = styled.div`
       cursor: pointer;
       color: #ffffff;
       background-color: #d5a8f9;
+      font-family: "Lato";
 
       &:hover {
         background-color: #9816ff80;
       }
     }
   }
+`;
+
+const UselessButton = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  font-size: 30px;
+  color: #00000050;
+  background-color: #cccccc10;
+  font-family: "Lato";
 `;
 
 export default CreatePokemon;

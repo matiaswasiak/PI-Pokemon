@@ -23,7 +23,7 @@ describe("Pokemon model", () => {
   describe("Number Validation", () => {
     beforeEach(() => Pokemon.sync({ force: true }));
     describe("number", () => {
-      it("should throw an error if healthPoints is not a number", (done) => {
+      it("should throw an error if health is not a number", (done) => {
         Pokemon.create({})
           .then(() => done(new Error("It requires a numbre")))
           .catch(() => done());

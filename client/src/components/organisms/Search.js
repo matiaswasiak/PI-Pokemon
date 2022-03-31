@@ -65,9 +65,9 @@ const SearchBar = styled.form`
     border-radius: 20px;
 
     &:focus {
+      font-size: 18px;
       outline: 0 solid #d5a8f9;
       background-color: #fbf7fc;
-      font-size: 18px;
     }
   }
 

@@ -205,9 +205,11 @@ const InfoDetail = styled.div`
     }
   }
 `;
+
 const StatsDetail = styled.div`
   width: 340px;
 `;
+
 const PrincipalDetail = styled.div`
   display: flex;
   justify-content: space-between;
@@ -224,6 +226,7 @@ const PrincipalDetail = styled.div`
     }
   }
 `;
+
 const SecondaryDetail = styled.div`
   label {
     div {
@@ -260,9 +263,9 @@ const SecondaryDetail = styled.div`
       border: none;
       height: 16px;
       width: 16px;
-      border-radius: 50%;
-      background: #9c27b0;
       margin-top: -4px;
+      background: #9c27b0;
+      border-radius: 50%;
     }
 
     input[type="range"]:focus {

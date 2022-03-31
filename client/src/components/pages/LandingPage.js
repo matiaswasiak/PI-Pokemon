@@ -22,6 +22,7 @@ const Container = styled.main`
   background-size: cover;
   background-repeat: no-repeat;
 `;
+
 const LandingImage = styled.div`
   width: 100%;
   height: 100%;
@@ -37,6 +38,7 @@ const LandingImage = styled.div`
     width: 90%;
   }
 `;
+
 const LandingInfo = styled.div`
   display: flex;
   flex-direction: column;

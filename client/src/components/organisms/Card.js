@@ -78,16 +78,19 @@ const Container = styled.div`
   border-radius: 20px;
   cursor: pointer;
 `;
+
 const CardImage = styled(Link)`
   img {
     width: 100%;
   }
 `;
+
 const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
+
 const CardTitle = styled.div`
   h3 {
     margin: 0;
@@ -97,6 +100,7 @@ const CardTitle = styled.div`
     text-transform: uppercase;
   }
 `;
+
 const CardTypes = styled.div`
   display: flex;
 

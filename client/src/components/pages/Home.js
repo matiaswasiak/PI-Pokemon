@@ -135,12 +135,7 @@ const Home = () => {
               <Gallery>
                 {currentPosts.length > 0 ? (
                   currentPosts.map((pokemon, index) => {
-                    return pokemon === "noData" ? (
-                      <h2 key={index} style={{ gridColumn: "none" }}>
-                        We didn't find any Pokémon created by you, click Create
-                        Pokémon :{")"}
-                      </h2>
-                    ) : typeof pokemon === "string" ? (
+                    return typeof pokemon === "string" ? (
                       <h2 key={index} style={{ gridColumn: "none" }}>
                         Pokemon with the name {pokemon} was not found :/
                       </h2>
@@ -192,7 +187,7 @@ const Home = () => {
 
               <PokeTypes>
                 <select onChange={(e) => handleSort(e)}>
-                  <option value="all">ORDER BY NAME</option>
+                  <option value="all">BY NAME</option>
                   <option value="asc">Ascending order</option>
                   <option value="desc">Descending order</option>
                 </select>
@@ -202,7 +197,7 @@ const Home = () => {
                     handleSortAttack(e);
                   }}
                 >
-                  <option value="all">STRENGTH</option>
+                  <option value="all">BY ATTACK</option>
                   <option value="strong">Stronger attack</option>
                   <option value="weak">Weaker attack</option>
                 </select>
@@ -227,8 +222,8 @@ const Home = () => {
                   onChange={(e) => handleFilterCreated(e)}
                 >
                   <option disabled>CREATOR</option>
-                  <option value="all">Show all...</option>
-                  <option value="api">Api</option>
+                  <option value="all">ALL</option>
+                  <option value="api">API</option>
                   <option value="created">Created</option>
                 </select>
               </PokeTypes>
@@ -244,11 +239,11 @@ const Home = () => {
 const Container = styled.main`
   display: flex;
   box-sizing: border-box;
+  min-width: 410px;
+  min-height: 650px;
   height: calc(100vh - 160px);
   padding: 60px;
   background: linear-gradient(#e0cfeb, #c9b7fa);
-  min-height: 650px;
-  min-width: 410px;
 `;
 
 const HomeContent = styled.div`
@@ -377,6 +372,7 @@ const PokeTypes = styled.div`
     height: 60px;
     background-color: #d5a8f9;
     font-family: "Lato";
+    text-align: center;
     border: 1px solid #9816ff80;
     outline: none;
 
