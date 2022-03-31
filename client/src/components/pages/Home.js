@@ -121,7 +121,7 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
+      <Header setCurrentPage={setCurrentPage} />
       <Container>
         {pokemons.length === 0 && (
           <Gif>

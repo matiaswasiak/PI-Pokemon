@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { getNamePokemons } from "../../redux/actions";
 import styled from "styled-components";
 
-const Search = () => {
+const Search = ({ setCurrentPage }) => {
   // ------------------------- useDispatch ------------------------- //
   const dispatch = useDispatch();
 
@@ -25,6 +25,8 @@ const Search = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setCurrentPage(1);
+    localStorage.setItem("page", 1);
     dispatch(getNamePokemons(name));
   }
 

@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Search from "../organisms/Search";
 
-const Header = () => {
+const Header = ({ setCurrentPage }) => {
   return (
     <Container>
       <Navbar>
         <StyledLink to="/home">
           <h1>Pokemon Wiki</h1>
         </StyledLink>
-        <Search />
+        <Search setCurrentPage={setCurrentPage} />
         <StyledLink to="/create">
           <p>Create Pokemon</p>
         </StyledLink>
