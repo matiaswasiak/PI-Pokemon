@@ -49,7 +49,7 @@ const Home = () => {
   }, [dispatch]);
 
   let localS = localStorage.getItem("page");
-  console.log(currentPage, localStorage.getItem("page"));
+  // console.log(currentPage, localStorage.getItem("page"));
 
   useEffect(() => {
     if (localS !== null) {

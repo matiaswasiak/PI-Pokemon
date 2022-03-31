@@ -157,7 +157,7 @@ function rootReducer(state = initialState, action) {
 
     case FILTER_BY_TYPE: // Filter by types
       const pokemonByType = state.allPokemons;
-      console.log(action.createdApiDb);
+      // console.log(action.createdApiDb);
       let filteredState =
         action.payload === "all"
           ? pokemonByType
