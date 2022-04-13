@@ -17,12 +17,14 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
     <Container>
       <ul>
         <li>
-          <a
-            href="#"
-            onClick={() => currentPage > 1 && setPage(currentPage - 1)}
-          >
-            prev
-          </a>
+          {currentPage !== 1 && (
+            <a
+              href="#"
+              onClick={() => currentPage > 1 && setPage(currentPage - 1)}
+            >
+              prev
+            </a>
+          )}
         </li>
         {pageNumbers.map((number) => (
           <li key={number}>
@@ -32,12 +34,18 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
           </li>
         ))}
         <li>
-          <a
-            href="#"
-            onClick={() => currentPage !== maxPages && setPage(currentPage + 1)}
-          >
-            next
-          </a>
+          {currentPage === maxPages ? (
+            <></>
+          ) : (
+            <a
+              href="#"
+              onClick={() =>
+                currentPage !== maxPages && setPage(currentPage + 1)
+              }
+            >
+              next
+            </a>
+          )}
         </li>
       </ul>
     </Container>
